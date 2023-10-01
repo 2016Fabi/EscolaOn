@@ -1,14 +1,21 @@
 package com.FI.EscolaOn.dto;
 
-import java.util.UUID;
-
-import lombok.Data;
-
-@Data
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class AlunoDTO {
-	private UUID id;
+
+	@NotBlank
 	private String nome;
-	private String enderero;
+	@NotBlank
+	private String endereco;
+	@NotBlank
 	private String senha;
+	@NotBlank
 	private String cpf;
+	@NotBlank
+	private String nivelDeAcesso;
+
 }

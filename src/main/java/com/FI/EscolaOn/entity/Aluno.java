@@ -1,26 +1,31 @@
 package com.FI.EscolaOn.entity;
 
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.FI.EscolaOn.Enuns.NivelAcesso;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "tb_Aluno")
-public class Aluno {
+public class Aluno implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	@Column(nullable = false, unique = true, length = 150)
 	private String nome;
-	private String enderero;
+	@Column(nullable = false, unique = true, length = 20)
+	private String endereco;
+	@Column(nullable = false, unique = true, length = 12)
 	private String senha;
+	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
-
+	@Column(nullable = false)
+	private NivelAcesso niveldeacesso;
+	private LocalDateTime dataDeCadastro;
 }
