@@ -9,6 +9,7 @@ import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @Table(name = "tb_Aluno")
