@@ -7,31 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.FI.EscolaOn.entity.Aluno;
 import com.FI.EscolaOn.repository.AlunoRepository;
-import com.FI.EscolaOn.service.IAlunoService;
+import org.springframework.stereotype.Service;
 
-public class AlunoServiceImpl implements IAlunoService{
+@Service
+public class AlunoService {
     
 	@Autowired
 	AlunoRepository alunoRepository;
 	
-	@Override
-	public Aluno salvar(Aluno aluno) {
+
+	public Aluno save(Aluno aluno) {
 		return alunoRepository.save(aluno);
 	}
 
-	@Override
 	public List<Aluno> listar() {
-		return alunoRepository.listar();
+		return alunoRepository.findAll();
 	}
 
-	@Override
 	public void deletar(UUID id) {
 		alunoRepository.deleteById(id);
 	}
 
-	@Override
 	public Aluno updateAluno(Aluno aluno) {
-		return salvar(aluno);
+		return alunoRepository.save(aluno);
 	}
 
 }
