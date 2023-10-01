@@ -6,8 +6,8 @@ import java.util.UUID;
 import com.FI.EscolaOn.entity.Professor;
 
 import lombok.Data;
-@Data
 
+@Data
 public class ProvaDTO {
 	private UUID id;
 	private String nomeProva;
