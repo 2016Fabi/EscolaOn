@@ -22,7 +22,7 @@ public class ProvaController {
 	ProvaService provaService;
 	
 	@PostMapping
-	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProvaDTO provaDTO){
+	public ResponseEntity<Object> saveProva(@RequestBody @Valid ProvaDTO provaDTO){
 		return null;   	
 	}
 
