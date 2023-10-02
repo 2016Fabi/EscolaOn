@@ -11,5 +11,6 @@ public class ProfessorDTO {
 	private String enderero;
 	private String senha;
 	private String cpf;
-	private String niveldeacesso;
+	private String nivelDeAcesso;
+	
 }
