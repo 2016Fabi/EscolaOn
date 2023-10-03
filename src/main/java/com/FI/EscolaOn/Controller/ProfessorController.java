@@ -2,12 +2,14 @@ package com.FI.EscolaOn.Controller;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 //import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.ProfessorDTO;
+import com.FI.EscolaOn.entity.Aluno;
 import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 
@@ -28,10 +31,11 @@ public class ProfessorController {
 	
 	@Autowired
 	ProfessorService professorService;
-	
+
 	@PostMapping
-	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO, HttpServletRequest request){
-	   //Imilio
+	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO,
+			HttpServletRequest request) {
+		// Imilio
 //		    var professor = new Professor();
 //	        BeanUtils.copyProperties(professorDTO, professor);
 //	        if(!professorDTO.getNivelDeAcesso().equals("aluno")){
@@ -43,17 +47,22 @@ public class ProfessorController {
 //	        }
 //	        professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 //	        return ResponseEntity.status(HttpStatus.CREATED).body(professorService.save(professor)); 
-		
+
 		Professor professor = new Professor();
-	    professor.setNome(professorDTO.getNome());
-	    professor.setEndereco(professorDTO.getEndereco());
-	    professor.setSenha(professorDTO.getSenha());
-	    professor.setCpf(professorDTO.getCpf());
-	    professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
-	    professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-	    professor = professorService.save(professor);
+		professor.setNome(professorDTO.getNome());
+		professor.setEndereco(professorDTO.getEndereco());
+		professor.setSenha(professorDTO.getSenha());
+		professor.setCpf(professorDTO.getCpf());
+		professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
+		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		professor = professorService.save(professor);
 		return new ResponseEntity<>(professor, HttpStatus.OK);
 	}
-	
+
+	@GetMapping
+	public ResponseEntity<List<Professor>> listar() {
+		List<Professor> listaProfessor = this.professorService.listar();
+		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
+	}
 
 }

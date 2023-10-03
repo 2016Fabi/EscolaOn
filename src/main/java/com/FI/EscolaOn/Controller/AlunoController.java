@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @RestController
 @RequestMapping("/Aluno")
@@ -50,5 +51,11 @@ public class AlunoController {
 		return new ResponseEntity<>(aluno, HttpStatus.OK);
 
 	}
+    
+    @GetMapping
+    public ResponseEntity<List<Aluno>> listar() {
+    	List<Aluno> listaAluno = this.alunoService.listar();
+    	return new ResponseEntity<>(listaAluno, HttpStatus.OK);
+    }
 
 }
