@@ -31,5 +31,8 @@ public class AlunoService {
 	public Aluno updateAluno(Aluno aluno) {
 		return alunoRepository.save(aluno);
 	}
+	public boolean existsBycpf(String cpf) {
+		return alunoRepository.existsBycpf(cpf);
+	}
 
 }

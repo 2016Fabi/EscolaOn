@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -24,6 +25,7 @@ public class Aluno implements Serializable {
 	private String endereco;
 	@Column(nullable = false, unique = true, length = 12)
 	private String senha;
+	private String email;
 	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
 	@Column(nullable = false)

@@ -33,10 +33,10 @@ public class ProfessorController {
 		 
 		    var professor = new Professor();
 	        BeanUtils.copyProperties(professorDTO, professor);
-	        if(professorDTO.getNivelDeAcesso().equals("professor")){
-	            professor.setNiveldeacesso(NivelAcesso.PROFESSOR);
+	        if(!professorDTO.getNivelDeAcesso().equals("aluno")){
+				System.out.println("Para esta Requisição só é possivel aluno como n");
 	        } else if (professorDTO.getNivelDeAcesso().equals("aluno")) {
-	            professor.setNiveldeacesso(NivelAcesso.ALUNO);
+	            professor.setNivelDeAcesso(NivelAcesso.ALUNO);
 	        }else {
 	            return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nível de Acesso não existe");
 	        }

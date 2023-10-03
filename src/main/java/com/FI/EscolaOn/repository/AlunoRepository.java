@@ -12,5 +12,6 @@ import jakarta.transaction.Transactional;
 @Transactional
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, UUID>{
+    boolean existsBycpf(String cpf);
 
 }

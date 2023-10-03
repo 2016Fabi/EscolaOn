@@ -5,6 +5,7 @@ import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.service.impl.AlunoService;
 import com.FI.EscolaOn.dto.AlunoDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,17 +27,13 @@ public class AlunoController {
     public ResponseEntity<Object> saveAluno(@RequestBody @Valid AlunoDTO alunoDTO){
 
         var aluno = new Aluno();
-        BeanUtils.copyProperties(alunoDTO, aluno);
-        if(alunoDTO.getNivelDeAcesso().equals("aluno")){
-            aluno.setNiveldeacesso(NivelAcesso.ALUNO);
-        } else if (alunoDTO.getNivelDeAcesso().equals("professor")) {
-            aluno.setNiveldeacesso(NivelAcesso.PROFESSOR);
-        }else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nível de Acesso não existe");
+        if(alunoService.existsBycpf(alunoDTO.getCpf())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("O CPF já existe");
         }
+        BeanUtils.copyProperties(alunoDTO, aluno);
         aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+        aluno.setNiveldeacesso(NivelAcesso.ALUNO);
         return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.save(aluno));
-
     }
 
 }

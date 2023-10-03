@@ -26,7 +26,7 @@ public class Professor implements Serializable {
 	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
 	@Column(nullable = false)
-	private NivelAcesso niveldeacesso;
+	private NivelAcesso nivelDeAcesso;
 	private LocalDateTime dataDeCadastro;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Prova> prova;
