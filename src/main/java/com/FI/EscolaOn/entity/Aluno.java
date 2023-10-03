@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+//import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @SuppressWarnings("serial")
