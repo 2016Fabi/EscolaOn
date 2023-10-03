@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.entity.Professor;
+import com.FI.EscolaOn.entity.Prova;
 import com.FI.EscolaOn.service.impl.ProfessorService;
+import com.FI.EscolaOn.service.impl.ProvaService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -30,6 +32,8 @@ public class ProfessorController {
 	
 	@Autowired
 	ProfessorService professorService;
+	@Autowired
+	ProvaService provaService;
 
 	@PostMapping
 	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO,
@@ -54,6 +58,11 @@ public class ProfessorController {
 		professor.setCpf(professorDTO.getCpf());
 		professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
 		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		
+		List<Prova> provas = professorDTO.getProva().stream().map(prova ->  provaService.findById(prova)).toList();
+		professor.setProva(provas);
+		
+	   
 		professor = professorService.save(professor);
 		return new ResponseEntity<>(professor, HttpStatus.OK);
 	}

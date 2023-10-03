@@ -12,7 +12,7 @@ public class ProvaDTO {
 	private UUID id;
 	private String nomeProva;
 	private String varianteProva;
-	private String perguntasProva;
+	private List<String> perguntasProva;
 	
 	private List<Professor> professor;
 }

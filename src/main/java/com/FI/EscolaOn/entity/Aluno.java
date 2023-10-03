@@ -26,7 +26,7 @@ public class Aluno implements Serializable {
 	@Column(nullable = false, unique = true, length = 12)
 	private String senha;
 	private String email;
-	@Column(nullable = false, unique = true, length = 15)
+	@Column(nullable = false, length = 15)
 	private String cpf;
 	@Column(nullable = false)
 	private NivelAcesso niveldeacesso;

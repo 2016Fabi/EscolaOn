@@ -30,6 +30,11 @@ public class ProvaService {
 	
 	public Prova updateProva(Prova prova) {
 		return provaRepository.save(prova);
-	}	
+	}
+	
+	public Prova findById(UUID id) {
+		return provaRepository.findById(id).get();
+		
+	}
 
 }

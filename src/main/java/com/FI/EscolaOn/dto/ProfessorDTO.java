@@ -1,6 +1,9 @@
 package com.FI.EscolaOn.dto;
 
+import java.util.List;
 import java.util.UUID;
+
+import com.FI.EscolaOn.entity.Prova;
 
 import lombok.Data;
 
@@ -12,5 +15,6 @@ public class ProfessorDTO {
 	private String senha;
 	private String cpf;
 	private String nivelDeAcesso;
+	private List<UUID> prova;
 	
 }

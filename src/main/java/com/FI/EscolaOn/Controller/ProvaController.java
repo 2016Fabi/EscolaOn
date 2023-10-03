@@ -28,8 +28,14 @@ public class ProvaController {
 	public ResponseEntity<Object> saveProva(@RequestBody @Valid ProvaDTO provaDTO, HttpServletRequest request){
 		
 		Prova prova = new Prova();
-		prova.setNomeProva(provaDTO.getNomeProva());
-		prova.setPerguntasProva(provaDTO.getPerguntasProva());
+		
+		if(provaDTO.getPerguntasProva().size() <= 10 ) {
+			prova.setPerguntasProva(provaDTO.getPerguntasProva());
+		}else{
+			throw new RuntimeException("Quantidades de questões não pode ser maior que 10.");
+		}
+		
+		prova.setNomeProva(provaDTO.getNomeProva());		
 		prova.setVarianteProva(provaDTO.getVarianteProva());
 		prova = provaService.save(prova);		
 		return new ResponseEntity<>(prova, HttpStatus.OK);   	
