@@ -46,7 +46,7 @@ public class ProfessorController {
 		
 		Professor professor = new Professor();
 	    professor.setNome(professorDTO.getNome());
-	    professor.setEndereco(professorDTO.getEnderero());
+	    professor.setEndereco(professorDTO.getEndereco());
 	    professor.setSenha(professorDTO.getSenha());
 	    professor.setCpf(professorDTO.getCpf());
 	    professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
