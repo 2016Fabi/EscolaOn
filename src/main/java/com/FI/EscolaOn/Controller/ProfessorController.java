@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.ProfessorDTO;
-import com.FI.EscolaOn.entity.Aluno;
 import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 
