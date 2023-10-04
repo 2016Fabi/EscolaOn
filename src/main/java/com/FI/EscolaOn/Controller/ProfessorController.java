@@ -59,8 +59,8 @@ public class ProfessorController {
 		professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
 		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 		
-		List<Prova> provas = professorDTO.getProva().stream().map(prova ->  provaService.findById(prova)).toList();
-		professor.setProva(provas);
+		//List<Prova> provas = professorDTO.getProva().stream().map(prova ->  provaService.findById(prova)).toList();
+		//professor.setProva(provas);
 		
 	   
 		professor = professorService.save(professor);

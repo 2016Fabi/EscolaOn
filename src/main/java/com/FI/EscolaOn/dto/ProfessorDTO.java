@@ -3,8 +3,6 @@ package com.FI.EscolaOn.dto;
 import java.util.List;
 import java.util.UUID;
 
-import com.FI.EscolaOn.entity.Prova;
-
 import lombok.Data;
 
 @Data
