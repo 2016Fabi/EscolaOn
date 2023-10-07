@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,7 +30,16 @@ public class Professor implements Serializable {
 	@Column(nullable = false)
 	private NivelAcesso nivelDeAcesso;
 	private LocalDateTime dataDeCadastro;
-	//@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private List<Prova> prova;
+	
+   
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "tb_prova_professor", joinColumns = {
+		@JoinColumn(name = "prova_id", referencedColumnName = "id")
+	}, inverseJoinColumns = {
+		@JoinColumn(name = "professor_id", referencedColumnName = "id")
+	})
+	@JsonIgnore
+    private List<Prova> prova;
 
 }

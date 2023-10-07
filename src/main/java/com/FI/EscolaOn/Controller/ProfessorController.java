@@ -2,7 +2,9 @@ package com.FI.EscolaOn.Controller;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 //import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,37 +37,33 @@ public class ProfessorController {
 	@Autowired
 	ProvaService provaService;
 
-	@PostMapping
-	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO,
-			HttpServletRequest request) {
-		// Imilio
-//		    var professor = new Professor();
-//	        BeanUtils.copyProperties(professorDTO, professor);
-//	        if(!professorDTO.getNivelDeAcesso().equals("aluno")){
-//				System.out.println("Para esta Requisição só é possivel aluno como n");
-//	        } else if (professorDTO.getNivelDeAcesso().equals("aluno")) {
-//	            professor.setNivelDeAcesso(NivelAcesso.ALUNO);
-//	        }else {
-//	            return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nível de Acesso não existe");
-//	        }
-//	        professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-//	        return ResponseEntity.status(HttpStatus.CREATED).body(professorService.save(professor)); 
+@PostMapping
+public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO, HttpServletRequest request) {
+    Professor professor = new Professor();
+    professor.setNome(professorDTO.getNome());
+    professor.setEndereco(professorDTO.getEndereco());
+    professor.setSenha(professorDTO.getSenha());
+    professor.setCpf(professorDTO.getCpf());
+    professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
+    professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 
-		Professor professor = new Professor();
-		professor.setNome(professorDTO.getNome());
-		professor.setEndereco(professorDTO.getEndereco());
-		professor.setSenha(professorDTO.getSenha());
-		professor.setCpf(professorDTO.getCpf());
-		professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
-		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-		
-		//List<Prova> provas = professorDTO.getProva().stream().map(prova ->  provaService.findById(prova)).toList();
-		//professor.setProva(provas);
-		
-	   
-		professor = professorService.save(professor);
-		return new ResponseEntity<>(professor, HttpStatus.OK);
-	}
+    // Mapeie os UUIDs das provas para objetos Prova
+    List<Prova> provas = new ArrayList<>();
+    for (UUID provaId : professorDTO.getProva()) {
+        Prova prova = provaService.findById(provaId);
+        if (prova != null) {
+            provas.add(prova);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prova com ID " + provaId + " não encontrada.");
+        }
+    }
+
+    professor.setProva(provas);
+
+    professor = professorService.save(professor);
+    return new ResponseEntity<>(professor, HttpStatus.OK);
+}
+
 
 	@GetMapping
 	public ResponseEntity<List<Professor>> listar() {

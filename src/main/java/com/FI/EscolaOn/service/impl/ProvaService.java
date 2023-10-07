@@ -17,7 +17,7 @@ public class ProvaService {
 	ProvaRepository provaRepository;
 	
 	public Prova save(Prova prova) {
-		return provaRepository.save(prova);
+		return provaRepository.save(prova);		
 	}
 	
 	public List<Prova> listar(){

@@ -11,10 +11,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.JoinColumn;
+
 import lombok.Data;
 
 @Entity
@@ -28,14 +29,7 @@ public class Prova {
 	private String varianteProva;
 	private List<String> perguntasProva;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "TB_PROVA_PROFESSOR", joinColumns = {
-			@JoinColumn(name = "prova_id", referencedColumnName = "id")
-	},
-	inverseJoinColumns = {
-			@JoinColumn(name = "professor_id",referencedColumnName = "id")
-	}
-	)
-	@JsonIgnore
+	@ManyToMany(mappedBy = "prova")
 	private List<Professor> professor;
+	
 }

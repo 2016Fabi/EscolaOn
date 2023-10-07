@@ -24,7 +24,7 @@ public class ProfessorService {
 	}
 	
 	public void deletar(UUID id) {
-		professorRepository.deleteById(id);
+		//professorRepository.deleteById(id);
 	}
 	
 	public Professor updateProfessor(Professor professor) {
