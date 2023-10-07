@@ -3,7 +3,6 @@ package com.FI.EscolaOn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
@@ -17,7 +16,7 @@ public class Aluno implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private Long id;
 	@Column(nullable = false, unique = true, length = 150)
 	private String nome;
 	@Column(nullable = false, unique = true, length = 20)

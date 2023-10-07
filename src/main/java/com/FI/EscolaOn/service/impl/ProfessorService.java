@@ -1,7 +1,6 @@
 package com.FI.EscolaOn.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,8 @@ public class ProfessorService {
 		return professorRepository.findAll();		
 	}
 	
-	public void deletar(UUID id) {
-		//professorRepository.deleteById(id);
+	public void deletar(Long id) {
+		professorRepository.deleteById(id);
 	}
 	
 	public Professor updateProfessor(Professor professor) {

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 //import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO pro
 
     // Mapeie os UUIDs das provas para objetos Prova
     List<Prova> provas = new ArrayList<>();
-    for (UUID provaId : professorDTO.getProva()) {
+    for (Long provaId : professorDTO.getProva()) {
         Prova prova = provaService.findById(provaId);
         if (prova != null) {
             provas.add(prova);

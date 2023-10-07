@@ -3,7 +3,6 @@ package com.FI.EscolaOn.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +17,7 @@ import lombok.Data;
 public class Professor implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private Long id;
 	@Column(nullable = false, unique = true, length = 150)
 	private String nome;
 	@Column(nullable = false, unique = true, length = 20)

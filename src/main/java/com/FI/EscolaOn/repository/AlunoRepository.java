@@ -1,7 +1,5 @@
 package com.FI.EscolaOn.repository;
 
-import java.util.UUID;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +9,6 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 @Repository
-public interface AlunoRepository extends JpaRepository<Aluno, UUID>{
+public interface AlunoRepository extends JpaRepository<Aluno, Long>{
     boolean existsBycpf(String cpf);
 }

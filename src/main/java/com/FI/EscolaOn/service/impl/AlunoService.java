@@ -1,7 +1,6 @@
 package com.FI.EscolaOn.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +23,8 @@ public class AlunoService {
 		return alunoRepository.findAll();
 	}
 
-	public void deletar(UUID id) {
-		alunoRepository.deleteById(id);
+	public void deletar(Long id) {
+		//alunoRepository.deleteById(id);
 	}
 
 	public Aluno updateAluno(Aluno aluno) {

@@ -1,7 +1,6 @@
 package com.FI.EscolaOn.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class ProvaService {
 		return provaRepository.findAll();		
 	}
 	
-	public void deletar(UUID id) {
+	public void deletar(Long id) {
 		provaRepository.deleteById(id);
 	}
 	
@@ -32,7 +31,7 @@ public class ProvaService {
 		return provaRepository.save(prova);
 	}
 	
-	public Prova findById(UUID id) {
+	public Prova findById(Long id) {
 		return provaRepository.findById(id).get();
 		
 	}
