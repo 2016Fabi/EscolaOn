@@ -24,12 +24,13 @@ public class AlunoService {
 	}
 
 	public void deletar(Long id) {
-		//alunoRepository.deleteById(id);
+		alunoRepository.deleteById(id);
 	}
 
-	public Aluno updateAluno(Aluno aluno) {
+	public Aluno updateAluno(Aluno aluno, Long id) {
 		return alunoRepository.save(aluno);
 	}
+
 	public boolean existsBycpf(String cpf) {
 		return alunoRepository.existsBycpf(cpf);
 	}

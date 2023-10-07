@@ -27,7 +27,7 @@ public class ProvaService {
 		provaRepository.deleteById(id);
 	}
 	
-	public Prova updateProva(Prova prova) {
+	public Prova updateProva(Prova prova, Long id) {
 		return provaRepository.save(prova);
 	}
 	

@@ -57,5 +57,15 @@ public class AlunoController {
     	List<Aluno> listaAluno = this.alunoService.listar();
     	return new ResponseEntity<>(listaAluno, HttpStatus.OK);
     }
+    
+    @PutMapping("/updateAluno/{id}")
+	public Aluno updateAluno(@RequestBody Aluno aluno, @PathVariable Long id) throws Exception {
+		return alunoService.updateAluno(aluno,id); 		
+	}
+    
+	@DeleteMapping("/deleteAluno/{id}")
+	public void deleteById(@PathVariable ("id") Long id) {
+		alunoService.deletar(id);
+	}
 
 }
