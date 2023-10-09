@@ -36,11 +36,11 @@ public class ProvaController {
 		
 		Prova prova = new Prova();
 		
-		// if(provaDTO.getPerguntasProva().size() <= 10 ) {
-		// 	prova.setPerguntasProva(provaDTO.getPerguntasProva());
-		// }else{
-		// 	throw new RuntimeException("Quantidades de questões não pode ser maior que 10.");
-		// }
+		 if(provaDTO.getPerguntasProva().size() <= 100 ) {
+		 	prova.setPerguntasProva(provaDTO.getPerguntasProva());
+		 }else{
+		 	throw new RuntimeException("Quantidades de questões não pode ser maior que 10.");
+		 }
 		
 		prova.setNomeProva(provaDTO.getNomeProva());		
 		prova.setVarianteProva(provaDTO.getVarianteProva());

@@ -1,5 +1,6 @@
 package com.FI.EscolaOn.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ public class Prova{
 	private Long id;
 	private String nomeProva;
 	private String varianteProva;
-	private List<String> perguntasProva;
+	private List<String> perguntasProva = new ArrayList<String>();
 	
 	@ManyToMany(mappedBy = "prova")
 	private List<Professor> professor;
