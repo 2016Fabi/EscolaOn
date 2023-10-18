@@ -1,4 +1,4 @@
-package com.FI.EscolaOn.service.impl;
+package com.FI.EscolaOn.service;
 
 import java.util.List;
 import java.util.UUID;

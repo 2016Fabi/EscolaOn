@@ -1,5 +1,6 @@
 package com.FI.EscolaOn.dto;
 
+import com.FI.EscolaOn.entity.Endereco;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -9,8 +10,7 @@ public class AlunoDTO {
 
 	@NotBlank(message = "{nome.not.blank}")
 	private String nome;
-	@NotBlank(message = "{endereco.not.blank}")
-	private String endereco;
+	private Endereco endereco;
 	@NotBlank(message = "{senha.not.blank}")
 	private String senha;
 	@NotBlank(message = "{email.not.blank}")

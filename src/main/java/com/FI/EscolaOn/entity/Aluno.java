@@ -19,16 +19,25 @@ public class Aluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	@Column(nullable = false, unique = true, length = 150)
+
+	@Column(nullable = false, length = 150)
 	private String nome;
-	@Column(nullable = false, unique = true, length = 20)
-	private String endereco;
-	@Column(nullable = false, unique = true, length = 12)
+
+	@Column(nullable = false)
 	private String senha;
+
+	@Column(nullable = false)
 	private String email;
+
 	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
+
 	@Column(nullable = false)
 	private NivelAcesso niveldeacesso;
+
 	private LocalDateTime dataDeCadastro;
+
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 }

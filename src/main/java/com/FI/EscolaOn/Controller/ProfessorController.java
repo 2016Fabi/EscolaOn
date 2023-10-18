@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.entity.Professor;
-import com.FI.EscolaOn.service.impl.ProfessorService;
+import com.FI.EscolaOn.service.ProfessorService;
 
 import jakarta.validation.Valid;
 
@@ -33,10 +33,10 @@ public class ProfessorController {
 		 
 		    var professor = new Professor();
 	        BeanUtils.copyProperties(professorDTO, professor);
-	        if(!professorDTO.getNivelDeAcesso().equals("aluno")){
-				System.out.println("Para esta Requisição só é possivel aluno como n");
-	        } else if (professorDTO.getNivelDeAcesso().equals("aluno")) {
-	            professor.setNivelDeAcesso(NivelAcesso.ALUNO);
+	        if(professorDTO.getNivelDeAcesso().equals("aluno")){
+				System.out.println("Para esta Requisição só é possivel Professor como nivel de Acesso!");
+	        } else if (professorDTO.getNivelDeAcesso().equals("professor")) {
+	            professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
 	        }else {
 	            return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nível de Acesso não existe");
 	        }

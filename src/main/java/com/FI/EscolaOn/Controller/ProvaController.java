@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FI.EscolaOn.dto.ProvaDTO;
-import com.FI.EscolaOn.service.impl.ProvaService;
+import com.FI.EscolaOn.service.ProvaService;
 
 import jakarta.validation.Valid;
 
