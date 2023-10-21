@@ -38,10 +38,9 @@ public class AlunoController {
 //        aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 //        aluno.setNiveldeacesso(NivelAcesso.ALUNO);
 //        return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.save(aluno));
-
-		Aluno aluno = new Aluno();
+    	
+   		Aluno aluno = new Aluno();   		
 		aluno.setNome(alunoDTO.getNome());
-		aluno.setEndereco(alunoDTO.getEndereco());
 		aluno.setSenha(alunoDTO.getSenha());
 		aluno.setCpf(alunoDTO.getCpf());
 		aluno.setEmail(alunoDTO.getEmail());

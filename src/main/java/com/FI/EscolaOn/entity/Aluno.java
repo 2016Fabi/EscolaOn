@@ -3,6 +3,7 @@ package com.FI.EscolaOn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
@@ -17,16 +18,22 @@ public class Aluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(nullable = false, unique = true, length = 150)
+	@Column(nullable = false, length = 150)
 	private String nome;
-	@Column(nullable = false, unique = true, length = 20)
-	private String endereco;
-	@Column(nullable = false, unique = true, length = 12)
+	@Column(nullable = false)
 	private String senha;
+	@Column(nullable = false)
 	private String email;
-	@Column(nullable = false, length = 15)
+	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
 	@Column(nullable = false)
 	private NivelAcesso niveldeacesso;
 	private LocalDateTime dataDeCadastro;
+	
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	
+	@ManyToMany(mappedBy = "aluno")
+	private List<Curso> curso;
 }

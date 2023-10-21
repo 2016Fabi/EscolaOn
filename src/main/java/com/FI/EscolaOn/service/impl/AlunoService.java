@@ -34,5 +34,9 @@ public class AlunoService {
 	public boolean existsBycpf(String cpf) {
 		return alunoRepository.existsBycpf(cpf);
 	}
+	
+	public Aluno findById(Long id) {
+		return alunoRepository.findById(id).get();
+	}
 
 }

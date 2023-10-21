@@ -7,7 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.Data;
@@ -22,8 +23,9 @@ public class Prova{
 	private String nomeProva;
 	private String varianteProva;
 	private List<String> perguntasProva = new ArrayList<String>();
-	
-	@ManyToMany(mappedBy = "prova")
-	private List<Professor> professor;
+
+	@OneToMany
+	@JoinColumn(name = "curso_id")
+	private List<Curso> curso;
 	
 }

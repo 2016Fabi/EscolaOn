@@ -30,10 +30,5 @@ public class ProvaService {
 	public Prova updateProva(Prova prova, Long id) {
 		return provaRepository.save(prova);
 	}
-	
-	public Prova findById(Long id) {
-		return provaRepository.findById(id).get();
-		
-	}
 
 }

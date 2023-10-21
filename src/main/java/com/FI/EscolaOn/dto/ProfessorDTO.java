@@ -1,6 +1,7 @@
 package com.FI.EscolaOn.dto;
 
-import java.util.List;
+import com.FI.EscolaOn.entity.Curso;
+import com.FI.EscolaOn.entity.Endereco;
 
 import lombok.Data;
 
@@ -8,10 +9,9 @@ import lombok.Data;
 public class ProfessorDTO {
 	private Long id;
 	private String nome;
-	private String endereco;
 	private String senha;
 	private String cpf;
 	private String nivelDeAcesso;
-	private List<Long> prova;
-	
+	private Endereco endereco;
+	private Curso curso;
 }

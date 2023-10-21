@@ -2,7 +2,6 @@ package com.FI.EscolaOn.Controller;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 
 //import org.springframework.beans.BeanUtils;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.entity.Professor;
-import com.FI.EscolaOn.entity.Prova;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 import com.FI.EscolaOn.service.impl.ProvaService;
 
@@ -43,25 +41,10 @@ public class ProfessorController {
 public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO, HttpServletRequest request) {
     Professor professor = new Professor();
     professor.setNome(professorDTO.getNome());
-    professor.setEndereco(professorDTO.getEndereco());
     professor.setSenha(professorDTO.getSenha());
     professor.setCpf(professorDTO.getCpf());
     professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
     professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-
-    // Mapeie os UUIDs das provas para objetos Prova
-    List<Prova> provas = new ArrayList<>();
-    for (Long provaId : professorDTO.getProva()) {
-        Prova prova = provaService.findById(provaId);
-        if (prova != null) {
-            provas.add(prova);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prova com ID " + provaId + " não encontrada.");
-        }
-    }
-
-    professor.setProva(provas);
-
     professor = professorService.save(professor);
     return new ResponseEntity<>(professor, HttpStatus.OK);
 }
