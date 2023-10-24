@@ -18,29 +18,29 @@ import lombok.Data;
 @Data
 @Table(name = "tb_Endereco")
 public class Endereco implements Serializable {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
-	 private Long id;
-	 
-	 @Column(nullable = false)
-	 private String provincia;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-	 @Column(nullable = false)
-	 private String municipio;
+	@Column(nullable = false)
+	private String provincia;
 
-     @Column(nullable = false)
-	 private String bairro;
+	@Column(nullable = false)
+	private String municipio;
 
-	 @Column(nullable = false)
-	 private String rua;
+	@Column(nullable = false)
+	private String bairro;
 
-	 @OneToOne(mappedBy = "endereco")
-	 private Professor professor;
-	 
-	 @OneToOne(mappedBy = "endereco")
-	 private Aluno aluno;
-	 
-	 @OneToOne(mappedBy = "endereco")
-	 private Curso curso;
-	 
+	@Column(nullable = false)
+	private String rua;
+
+	@OneToOne(mappedBy = "endereco")
+	private Professor professor;
+
+	@OneToOne(mappedBy = "endereco")
+	private Aluno aluno;
+
+	@OneToOne(mappedBy = "endereco")
+	private Curso curso;
+
 }

@@ -10,6 +10,6 @@ public class ProvaDTO {
 	private Long id;
 	private String nomeProva;
 	private String varianteProva;
-	private List<String> perguntasProva = new ArrayList<String>();	
+	private List<String> perguntasProva = new ArrayList<String>();
 	private List<Long> curso;
 }

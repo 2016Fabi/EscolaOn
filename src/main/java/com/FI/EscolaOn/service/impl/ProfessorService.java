@@ -10,24 +10,28 @@ import com.FI.EscolaOn.repository.ProfessorRepository;
 
 @Service
 public class ProfessorService {
-	
+
 	@Autowired
 	ProfessorRepository professorRepository;
-	
+
 	public Professor save(Professor professor) {
 		return professorRepository.save(professor);
 	}
-	
-	public List<Professor> listar(){
-		return professorRepository.findAll();		
+
+	public List<Professor> listar() {
+		return professorRepository.findAll();
 	}
-	
+
 	public void deletar(Long id) {
 		professorRepository.deleteById(id);
 	}
-	
+
 	public Professor updateProfessor(Professor professor, Long id) {
-		return professorRepository.save(professor);		
+		return professorRepository.save(professor);
+	}
+
+	public Professor findById(Long id) {
+		return professorRepository.findById(id).get();
 	}
 
 }

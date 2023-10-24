@@ -10,7 +10,6 @@ import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.Data;
 
-
 @SuppressWarnings("serial")
 @Entity
 @Transactional
@@ -29,11 +28,11 @@ public class Professor implements Serializable {
 	@Column(nullable = false)
 	private NivelAcesso nivelDeAcesso;
 	private LocalDateTime dataDeCadastro;
-		
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "curso_id")
 	@JsonIgnore

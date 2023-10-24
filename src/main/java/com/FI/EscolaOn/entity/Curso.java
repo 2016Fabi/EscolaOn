@@ -48,17 +48,15 @@ public class Curso {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "tb_curso_aluno", joinColumns = {
-			@JoinColumn(name = "aluno_id", referencedColumnName = "id") 
-	}, inverseJoinColumns = {
-			@JoinColumn(name = "curso_id", referencedColumnName = "id") 
-	})
+			@JoinColumn(name = "aluno_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "curso_id", referencedColumnName = "id") })
 	@JsonIgnore
 	private List<Aluno> aluno;
-	
+
 	@OneToMany
 	@JoinColumn(name = "prova_id")
 	private List<Prova> prova;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;

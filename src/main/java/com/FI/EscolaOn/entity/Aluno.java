@@ -1,6 +1,5 @@
 package com.FI.EscolaOn.entity;
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +13,7 @@ import lombok.Data;
 @Data
 @Table(name = "tb_Aluno")
 public class Aluno implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -29,11 +28,11 @@ public class Aluno implements Serializable {
 	@Column(nullable = false)
 	private NivelAcesso niveldeacesso;
 	private LocalDateTime dataDeCadastro;
-	
-	@OneToOne(cascade = CascadeType.DETACH)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
+
 	@ManyToMany(mappedBy = "aluno")
 	private List<Curso> curso;
 }

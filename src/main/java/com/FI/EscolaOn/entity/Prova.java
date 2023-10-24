@@ -16,7 +16,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "tb_Prova")
-public class Prova{
+public class Prova {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,5 +27,5 @@ public class Prova{
 	@OneToMany
 	@JoinColumn(name = "curso_id")
 	private List<Curso> curso;
-	
+
 }

@@ -22,47 +22,45 @@ import com.FI.EscolaOn.service.impl.ProvaService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/Prova")
 @CrossOrigin(origins = "*")
 public class ProvaController {
-	
+
 	@Autowired
 	ProvaService provaService;
-	
+
 	@PostMapping
-    public ResponseEntity<Object> saveProva(@RequestBody @Valid ProvaDTO provaDTO, HttpServletRequest request){
-		
+	public ResponseEntity<Object> saveProva(@RequestBody @Valid ProvaDTO provaDTO, HttpServletRequest request) {
+
 		Prova prova = new Prova();
-		
-		 if(provaDTO.getPerguntasProva().size() <= 100 ) {
-		 	prova.setPerguntasProva(provaDTO.getPerguntasProva());
-		 }else{
-		 	throw new RuntimeException("Quantidades de questões não pode ser maior que 10.");
-		 }
-		
-		prova.setNomeProva(provaDTO.getNomeProva());		
+
+		if (provaDTO.getPerguntasProva().size() <= 100) {
+			prova.setPerguntasProva(provaDTO.getPerguntasProva());
+		} else {
+			throw new RuntimeException("Quantidades de questões não pode ser maior que 10.");
+		}
+
+		prova.setNomeProva(provaDTO.getNomeProva());
 		prova.setVarianteProva(provaDTO.getVarianteProva());
-		prova = provaService.save(prova);		
-		return new ResponseEntity<>(prova, HttpStatus.OK);   	
+		prova = provaService.save(prova);
+		return new ResponseEntity<>(prova, HttpStatus.OK);
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<List<Prova>> listar() {
 		List<Prova> listaProva = this.provaService.listar();
 		return new ResponseEntity<>(listaProva, HttpStatus.OK);
 	}
-	
-	 @PutMapping("/updateProva/{id}")
-		public Prova updateProva(@RequestBody Prova prova, @PathVariable Long id) throws Exception {
-			return provaService.updateProva(prova,id); 		
-		}
-	    
-		@DeleteMapping("/deleteProva/{id}")
-		public void deleteById(@PathVariable ("id") Long id) {
-			provaService.deletar(id);
-		}
-	
+
+	@PutMapping("/updateProva/{id}")
+	public Prova updateProva(@RequestBody Prova prova, @PathVariable Long id) throws Exception {
+		return provaService.updateProva(prova, id);
+	}
+
+	@DeleteMapping("/deleteProva/{id}")
+	public void deleteById(@PathVariable("id") Long id) {
+		provaService.deletar(id);
+	}
 
 }

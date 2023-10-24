@@ -31,39 +31,39 @@ import jakarta.validation.Valid;
 @RequestMapping("/Professor")
 @CrossOrigin(origins = "*")
 public class ProfessorController {
-	
+
 	@Autowired
 	ProfessorService professorService;
 	@Autowired
 	ProvaService provaService;
 
-@PostMapping
-public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO, HttpServletRequest request) {
-    Professor professor = new Professor();
-    professor.setNome(professorDTO.getNome());
-    professor.setSenha(professorDTO.getSenha());
-    professor.setCpf(professorDTO.getCpf());
-    professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
-    professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-    professor = professorService.save(professor);
-    return new ResponseEntity<>(professor, HttpStatus.OK);
-}
-
+	@PostMapping
+	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTO,
+			HttpServletRequest request) {
+		Professor professor = new Professor();
+		professor.setNome(professorDTO.getNome());
+		professor.setSenha(professorDTO.getSenha());
+		professor.setCpf(professorDTO.getCpf());
+		professor.setNivelDeAcesso(NivelAcesso.PROFESSOR);
+		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		professor = professorService.save(professor);
+		return new ResponseEntity<>(professor, HttpStatus.OK);
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Professor>> listar() {
 		List<Professor> listaProfessor = this.professorService.listar();
 		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
 	}
-	
-	 @PutMapping("/updateProfessor/{id}")
-		public Professor updateProfessor(@RequestBody Professor professor, @PathVariable Long id) throws Exception {
-			return professorService.updateProfessor(professor,id); 		
-		}
-	    
-		@DeleteMapping("/deleteProfessor/{id}")
-		public void deleteById(@PathVariable ("id") Long id) {
-			professorService.deletar(id);
-		}
+
+	@PutMapping("/updateProfessor/{id}")
+	public Professor updateProfessor(@RequestBody Professor professor, @PathVariable Long id) throws Exception {
+		return professorService.updateProfessor(professor, id);
+	}
+
+	@DeleteMapping("/deleteProfessor/{id}")
+	public void deleteById(@PathVariable("id") Long id) {
+		professorService.deletar(id);
+	}
 
 }

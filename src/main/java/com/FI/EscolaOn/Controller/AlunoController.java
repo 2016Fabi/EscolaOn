@@ -23,10 +23,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class AlunoController {
 
-    @Autowired
-    AlunoService alunoService;
+	@Autowired
+	AlunoService alunoService;
 
-    @PostMapping
+	@PostMapping
 	public ResponseEntity<Object> saveAluno(@RequestBody @Valid AlunoDTO alunoDTO, HttpServletRequest request) {
 
 		// Imilio
@@ -38,8 +38,8 @@ public class AlunoController {
 //        aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 //        aluno.setNiveldeacesso(NivelAcesso.ALUNO);
 //        return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.save(aluno));
-    	
-   		Aluno aluno = new Aluno();   		
+
+		Aluno aluno = new Aluno();
 		aluno.setNome(alunoDTO.getNome());
 		aluno.setSenha(alunoDTO.getSenha());
 		aluno.setCpf(alunoDTO.getCpf());
@@ -50,20 +50,20 @@ public class AlunoController {
 		return new ResponseEntity<>(aluno, HttpStatus.OK);
 
 	}
-    
-    @GetMapping
-    public ResponseEntity<List<Aluno>> listar() {
-    	List<Aluno> listaAluno = this.alunoService.listar();
-    	return new ResponseEntity<>(listaAluno, HttpStatus.OK);
-    }
-    
-    @PutMapping("/updateAluno/{id}")
-	public Aluno updateAluno(@RequestBody Aluno aluno, @PathVariable Long id) throws Exception {
-		return alunoService.updateAluno(aluno,id); 		
+
+	@GetMapping
+	public ResponseEntity<List<Aluno>> listar() {
+		List<Aluno> listaAluno = this.alunoService.listar();
+		return new ResponseEntity<>(listaAluno, HttpStatus.OK);
 	}
-    
+
+	@PutMapping("/updateAluno/{id}")
+	public Aluno updateAluno(@RequestBody Aluno aluno, @PathVariable Long id) throws Exception {
+		return alunoService.updateAluno(aluno, id);
+	}
+
 	@DeleteMapping("/deleteAluno/{id}")
-	public void deleteById(@PathVariable ("id") Long id) {
+	public void deleteById(@PathVariable("id") Long id) {
 		alunoService.deletar(id);
 	}
 

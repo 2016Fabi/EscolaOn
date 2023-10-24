@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AlunoService {
-    
+
 	@Autowired
 	AlunoRepository alunoRepository;
-	
 
 	public Aluno save(Aluno aluno) {
 		return alunoRepository.save(aluno);
@@ -34,7 +33,7 @@ public class AlunoService {
 	public boolean existsBycpf(String cpf) {
 		return alunoRepository.existsBycpf(cpf);
 	}
-	
+
 	public Aluno findById(Long id) {
 		return alunoRepository.findById(id).get();
 	}

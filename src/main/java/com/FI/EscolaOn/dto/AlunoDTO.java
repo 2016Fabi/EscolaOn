@@ -10,7 +10,6 @@ import lombok.Data;
 
 @Data
 public class AlunoDTO {
-
 	@NotBlank(message = "{nome.not.blank}")
 	private String nome;
 	@NotBlank(message = "{senha.not.blank}")
