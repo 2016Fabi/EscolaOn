@@ -1,6 +1,6 @@
 # EscolaOn
 Sistema para prova online
-```mermaid  
+```mermaid(exemplo de classe com relacionamento)  
 classDiagram
   class Professor {
     -id: int
