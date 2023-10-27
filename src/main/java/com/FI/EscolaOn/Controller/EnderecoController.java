@@ -31,17 +31,16 @@ public class EnderecoController {
 	EnderecoService enderecoService;
 
 	@PostMapping
-	public ResponseEntity<Object> saveEndereco(@RequestBody @Valid EnderecoDTO enderecoDTO,
-			HttpServletRequest request) {
+	public ResponseEntity<Object> saveEndereco(@RequestBody @Valid EnderecoDTO enderecoDTO,	HttpServletRequest request) {
 		Endereco end = new Endereco();
 		end.setProvincia(enderecoDTO.getProvincia());
 		end.setMunicipio(enderecoDTO.getMunicipio());
 		end.setBairro(enderecoDTO.getBairro());
-		end.setRua(enderecoDTO.getRua());
-
+		end.setRua(enderecoDTO.getRua());		
 		end = enderecoService.save(end);
 		return new ResponseEntity<>(end, HttpStatus.OK);
 	}
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Endereco>> listar(){

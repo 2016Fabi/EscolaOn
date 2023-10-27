@@ -1,7 +1,5 @@
 package com.FI.EscolaOn.dto;
 
-import java.util.List;
-
 import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.entity.Professor;
 
@@ -16,7 +14,5 @@ public class CursoDTO {
 	@NotBlank
 	private String descricao;
 	private Professor professor;
-	private List<Long> aluno;
-	private List<Long> prova;
 	private Endereco endereco;
 }

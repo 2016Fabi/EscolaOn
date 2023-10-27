@@ -11,5 +11,4 @@ public class ProvaDTO {
 	private String nomeProva;
 	private String varianteProva;
 	private List<String> perguntasProva = new ArrayList<String>();
-	private List<Long> curso;
 }

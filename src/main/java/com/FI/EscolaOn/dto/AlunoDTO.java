@@ -1,7 +1,5 @@
 package com.FI.EscolaOn.dto;
 
-import java.util.List;
-
 import com.FI.EscolaOn.entity.Endereco;
 
 import jakarta.validation.constraints.Email;
@@ -19,6 +17,6 @@ public class AlunoDTO {
 	private String email;
 	@NotBlank(message = "{cpf.not.blank}")
 	private String cpf;
-	private List<Long> curso;
+	private String niveldeacesso;
 	private Endereco endereco;
 }

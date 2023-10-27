@@ -3,8 +3,8 @@ package com.FI.EscolaOn.dto;
 import lombok.Data;
 
 @Data
-public class ProfessorDTO {
-	private Long id; 
+public class ProfessorDTOResponse {
+    private Long id; 
 	private String nome;
 	private String senha;
 	private String cpf;

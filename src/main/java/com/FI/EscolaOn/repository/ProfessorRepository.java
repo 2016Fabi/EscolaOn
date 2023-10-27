@@ -8,4 +8,5 @@ import com.FI.EscolaOn.entity.Professor;
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long>{
 
+
 }

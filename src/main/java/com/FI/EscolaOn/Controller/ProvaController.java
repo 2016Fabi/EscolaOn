@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FI.EscolaOn.dto.ProvaDTO;
+//import com.FI.EscolaOn.entity.Curso;
 import com.FI.EscolaOn.entity.Prova;
+import com.FI.EscolaOn.service.impl.CursoService;
 import com.FI.EscolaOn.service.impl.ProvaService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +31,8 @@ public class ProvaController {
 
 	@Autowired
 	ProvaService provaService;
+	@Autowired
+	CursoService cursoService;
 
 	@PostMapping
 	public ResponseEntity<Object> saveProva(@RequestBody @Valid ProvaDTO provaDTO, HttpServletRequest request) {
@@ -43,6 +47,7 @@ public class ProvaController {
 
 		prova.setNomeProva(provaDTO.getNomeProva());
 		prova.setVarianteProva(provaDTO.getVarianteProva());
+		
 		prova = provaService.save(prova);
 		return new ResponseEntity<>(prova, HttpStatus.OK);
 	}

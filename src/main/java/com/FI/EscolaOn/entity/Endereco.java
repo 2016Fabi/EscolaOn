@@ -36,11 +36,5 @@ public class Endereco implements Serializable {
 
 	@OneToOne(mappedBy = "endereco")
 	private Professor professor;
-
-	@OneToOne(mappedBy = "endereco")
-	private Aluno aluno;
-
-	@OneToOne(mappedBy = "endereco")
-	private Curso curso;
-
+	
 }

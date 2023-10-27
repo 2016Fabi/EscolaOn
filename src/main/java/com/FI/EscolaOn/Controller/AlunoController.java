@@ -1,7 +1,7 @@
 package com.FI.EscolaOn.Controller;
 
 import com.FI.EscolaOn.entity.Aluno;
-import com.FI.EscolaOn.Enuns.NivelAcesso;
+//import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.service.impl.AlunoService;
 import com.FI.EscolaOn.dto.AlunoDTO;
 
@@ -44,7 +44,7 @@ public class AlunoController {
 		aluno.setSenha(alunoDTO.getSenha());
 		aluno.setCpf(alunoDTO.getCpf());
 		aluno.setEmail(alunoDTO.getEmail());
-		aluno.setNiveldeacesso(NivelAcesso.ALUNO);
+		aluno.setNiveldeacesso(alunoDTO.getNiveldeacesso());
 		aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 		aluno = alunoService.save(aluno);
 		return new ResponseEntity<>(aluno, HttpStatus.OK);

@@ -3,8 +3,7 @@ package com.FI.EscolaOn.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.FI.EscolaOn.Enuns.NivelAcesso;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.FI.EscolaOn.Enuns.NivelAcesso;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
@@ -26,16 +25,12 @@ public class Professor implements Serializable {
 	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
 	@Column(nullable = false)
-	private NivelAcesso nivelDeAcesso;
+	private String nivelDeAcesso; //eu alterei porque nao funciona num metodo que eu fiz entao tive que mudar para string 
 	private LocalDateTime dataDeCadastro;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-
-	@ManyToOne
-	@JoinColumn(name = "curso_id")
-	@JsonIgnore
-	private Curso curso;
-
+	
+	
 }
