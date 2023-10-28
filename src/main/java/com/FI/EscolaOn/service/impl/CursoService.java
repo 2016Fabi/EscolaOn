@@ -18,7 +18,7 @@ public class CursoService {
 		return cursoRepository.save(curso);
 	}
 
-	public List<Curso> listar() {
+	public List<Curso> listarCurso() {
 		return cursoRepository.findAll();
 	}
 

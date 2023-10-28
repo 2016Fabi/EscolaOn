@@ -18,7 +18,7 @@ public class AlunoService {
 		return alunoRepository.save(aluno);
 	}
 
-	public List<Aluno> listar() {
+	public List<Aluno> listarAluno() {
 		return alunoRepository.findAll();
 	}
 

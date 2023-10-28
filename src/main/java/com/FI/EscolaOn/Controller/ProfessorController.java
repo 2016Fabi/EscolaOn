@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.FI.EscolaOn.Enuns.NivelAcesso;
+import com.FI.EscolaOn.Enuns.NivelAcesso;
+import com.FI.EscolaOn.dto.EnderecoDTO;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.dto.ProfessorDTOResponse;
-import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 
@@ -36,15 +36,15 @@ public class ProfessorController {
 	ProfessorService professorService;
 
 	@PostMapping
-	public ResponseEntity<Object> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
+	public ResponseEntity<ProfessorDTOResponse> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
 		Professor professor = new Professor();
 		
-		Endereco endereco = new Endereco();
+		EnderecoDTO endereco = new EnderecoDTO();
 		
 		professor.setNome(professorDTORequest.getNome());
 		professor.setSenha(professorDTORequest.getSenha());
 		professor.setCpf(professorDTORequest.getCpf());
-		professor.setNivelDeAcesso(professorDTORequest.getNivelDeAcesso());
+		professor.setNivelDeAcesso(NivelAcesso.valueOf(professorDTORequest.getNivelDeAcesso().toUpperCase()));
 		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 		
 		endereco.setProvincia(professorDTORequest.getEndereco().getProvincia());
@@ -53,25 +53,26 @@ public class ProfessorController {
 		endereco.setRua(professorDTORequest.getEndereco().getRua());
 		
 		ProfessorDTOResponse professorResponse = new ProfessorDTOResponse();
-		
-		professor.setEndereco(endereco);
 		professor = professorService.save(professor);
 		
 	    professorResponse.setId(professor.getId());
 		professorResponse.setNome(professor.getNome());
 		professorResponse.setSenha(professor.getSenha());
 		professorResponse.setCpf(professor.getCpf());
-		professorResponse.setNivelDeAcesso(professorDTORequest.getNivelDeAcesso());
+		professorResponse.setNivelDeAcesso(professor.getNivelDeAcesso().toString().toLowerCase());
+		professorResponse.setDataDeCadastro(professor.getDataDeCadastro());
+		professorResponse.setEndereco(endereco);
 	   
 		
-		return new ResponseEntity<>(professorResponse, HttpStatus.OK);
+		return ResponseEntity.status(HttpStatus.CREATED).body(professorResponse);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<Professor>> listar() {
-		List<Professor> listaProfessor = this.professorService.listar();
+		List<Professor> listaProfessor = this.professorService.listarProfessor();
 		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
 	}
+	
 
 	@PutMapping("/updateProfessor/{id}")
 	public Professor updateProfessor(@RequestBody Professor professor, @PathVariable Long id) throws Exception {

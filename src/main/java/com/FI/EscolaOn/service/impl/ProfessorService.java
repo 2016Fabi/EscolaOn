@@ -18,8 +18,8 @@ public class ProfessorService {
 		return professorRepository.save(professor);
 	}
 
-	public List<Professor> listar() {
-		return professorRepository.findAll();
+	public List<Professor> listarProfessor() {
+		return professorRepository.findAll();	
 	}
 
 	public void deletar(Long id) {
