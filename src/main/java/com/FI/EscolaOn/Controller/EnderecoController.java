@@ -44,7 +44,7 @@ public class EnderecoController {
 	
 	@GetMapping
 	public ResponseEntity<List<Endereco>> listar(){
-		List<Endereco> listaEndereco = this.enderecoService.listarEndereco();
+		List<Endereco> listaEndereco = this.enderecoService.findAll();
 		return new ResponseEntity<>(listaEndereco, HttpStatus.OK);
 	}
 	

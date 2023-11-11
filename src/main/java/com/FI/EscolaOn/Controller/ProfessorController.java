@@ -2,7 +2,9 @@ package com.FI.EscolaOn.Controller;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -68,11 +70,17 @@ public class ProfessorController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Professor>> listar() {
-		List<Professor> listaProfessor = this.professorService.listarProfessor();
+	public ResponseEntity<List<Professor>> findAll() {
+		List<Professor> listaProfessor = this.professorService.findAll();
 		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
 	}
 	
+	
+//	public ResponseEntity<List<ProfessorDTO>> findAll() {
+//		List<ProfessorDTO> professorDTO = new ArrayList<ProfessorDTO>();
+//		professorDTO = professorService.findAll().stream().map(professor -> new ProfessorDTO(professor)).collect(Collectors.toList());
+//		return ResponseEntity.ok().body(professorDTO);
+//	}	
 
 	@PutMapping("/updateProfessor/{id}")
 	public Professor updateProfessor(@RequestBody Professor professor, @PathVariable Long id) throws Exception {

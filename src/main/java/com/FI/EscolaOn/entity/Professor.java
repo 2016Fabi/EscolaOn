@@ -31,6 +31,22 @@ public class Professor implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
+
+	public Professor() {
+		
+	}
+
+	public Professor(Long id, String nome, String senha, String cpf, NivelAcesso nivelDeAcesso,
+			LocalDateTime dataDeCadastro) {		
+		this.id = id;
+		this.nome = nome;
+		this.senha = senha;
+		this.cpf = cpf;
+		this.nivelDeAcesso = nivelDeAcesso;
+		this.dataDeCadastro = dataDeCadastro;
+	}
+	
+	
 	
 	
 }

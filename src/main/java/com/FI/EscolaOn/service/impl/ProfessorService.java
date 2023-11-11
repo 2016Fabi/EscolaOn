@@ -1,7 +1,9 @@
 package com.FI.EscolaOn.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class ProfessorService {
 		return professorRepository.save(professor);
 	}
 
-	public List<Professor> listarProfessor() {
+	public List<Professor> findAll() {
 		return professorRepository.findAll();	
 	}
 
@@ -31,7 +33,8 @@ public class ProfessorService {
 	}
 
 	public Professor findById(Long id) {
-		return professorRepository.findById(id).get();
+		Optional<Professor> obj = professorRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado Id:" + id + ", Tipo: " + Professor.class.getName(), obj));
 	}
 
 }

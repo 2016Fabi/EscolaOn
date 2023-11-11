@@ -54,7 +54,7 @@ public class ProvaController {
 
 	@GetMapping
 	public ResponseEntity<List<Prova>> listar() {
-		List<Prova> listaProva = this.provaService.listarProva();
+		List<Prova> listaProva = this.provaService.findAll();
 		return new ResponseEntity<>(listaProva, HttpStatus.OK);
 	}
 

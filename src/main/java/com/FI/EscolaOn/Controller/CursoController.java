@@ -55,7 +55,7 @@ public class CursoController {
 	
 	@GetMapping
 	public ResponseEntity<List<Curso>> listar(){
-		List<Curso> listaCurso = this.cursoService.listarCurso();
+		List<Curso> listaCurso = this.cursoService.findAll();
 		return new ResponseEntity<>(listaCurso, HttpStatus.OK);
 	}
 	

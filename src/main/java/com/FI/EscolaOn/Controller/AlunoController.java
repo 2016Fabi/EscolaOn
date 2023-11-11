@@ -53,7 +53,7 @@ public class AlunoController {
 
 	@GetMapping
 	public ResponseEntity<List<Aluno>> listar() {
-		List<Aluno> listaAluno = this.alunoService.listarAluno();
+		List<Aluno> listaAluno = this.alunoService.findAll();
 		return new ResponseEntity<>(listaAluno, HttpStatus.OK);
 	}
 

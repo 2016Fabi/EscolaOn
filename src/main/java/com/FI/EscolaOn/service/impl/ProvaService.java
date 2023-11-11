@@ -18,7 +18,7 @@ public class ProvaService {
 		return provaRepository.save(prova);
 	}
 
-	public List<Prova> listarProva() {
+	public List<Prova> findAll() {
 		return provaRepository.findAll();
 	}
 
