@@ -23,7 +23,9 @@ import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.EnderecoDTO;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.dto.ProfessorDTOResponse;
+import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.entity.Professor;
+import com.FI.EscolaOn.service.impl.EnderecoService;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +38,9 @@ public class ProfessorController {
 
 	@Autowired
 	ProfessorService professorService;
+	
+	@Autowired
+	EnderecoService enderecoService;
 
 	@PostMapping
 	public ResponseEntity<ProfessorDTOResponse> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
@@ -54,21 +59,28 @@ public class ProfessorController {
 		endereco.setMunicipio(professorDTORequest.getEndereco().getMunicipio());
 		endereco.setRua(professorDTORequest.getEndereco().getRua());
 		
-		ProfessorDTOResponse professorResponse = new ProfessorDTOResponse();
+		Endereco end1 = new Endereco(endereco);
+		end1 = enderecoService.save(end1);
+		professor.setEndereco(end1);
+		
 		professor = professorService.save(professor);
 		
-	    professorResponse.setId(professor.getId());
+		ProfessorDTOResponse professorResponse = new ProfessorDTOResponse();
+		professorResponse.setId(professor.getId());
 		professorResponse.setNome(professor.getNome());
 		professorResponse.setSenha(professor.getSenha());
 		professorResponse.setCpf(professor.getCpf());
 		professorResponse.setNivelDeAcesso(professor.getNivelDeAcesso().toString().toLowerCase());
 		professorResponse.setDataDeCadastro(professor.getDataDeCadastro());
 		professorResponse.setEndereco(endereco);
-	   
 		
+		
+	    
+	   
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorResponse);
-	}
 
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<Professor>> findAll() {
 		List<Professor> listaProfessor = this.professorService.findAll();

@@ -21,7 +21,10 @@ public class EnderecoDTO {
 	
 	
 	public EnderecoDTO(Endereco endereco) {
-		// TODO Auto-generated constructor stub
+		this.provincia = endereco.getProvincia();
+		this.municipio = endereco.getMunicipio();
+		this.bairro = endereco.getBairro();
+		this.rua = endereco.getRua();
 	}
 	
 }
