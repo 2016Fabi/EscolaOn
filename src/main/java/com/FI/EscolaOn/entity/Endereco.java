@@ -38,7 +38,10 @@ public class Endereco implements Serializable {
 
 //	@OneToOne(mappedBy = "endereco")
 //	private Professor professor;
+
+	public Endereco() {
 	
+	}
 	
 
 	public Endereco(EnderecoDTO enderecoDTO) {
@@ -50,9 +53,6 @@ public class Endereco implements Serializable {
 
 
 
-	public Endereco() {
-		super();
-	}
 	
 	
 	

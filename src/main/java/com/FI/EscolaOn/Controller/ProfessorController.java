@@ -5,6 +5,7 @@ import java.time.ZoneId;
 //import java.util.ArrayList;
 import java.util.List;
 //import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.EnderecoDTO;
 import com.FI.EscolaOn.dto.ProfessorDTO;
 import com.FI.EscolaOn.dto.ProfessorDTOResponse;
-import com.FI.EscolaOn.entity.Endereco;
+//import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.service.impl.EnderecoService;
 import com.FI.EscolaOn.service.impl.ProfessorService;
@@ -59,9 +60,9 @@ public class ProfessorController {
 		endereco.setMunicipio(professorDTORequest.getEndereco().getMunicipio());
 		endereco.setRua(professorDTORequest.getEndereco().getRua());
 		
-		Endereco end1 = new Endereco(endereco);
-		end1 = enderecoService.save(end1);
-		professor.setEndereco(end1);
+//		Endereco end1 = new Endereco(endereco);
+//		end1 = enderecoService.save(end1);
+//		professor.setEndereco(end1);
 		
 		professor = professorService.save(professor);
 		
@@ -82,9 +83,30 @@ public class ProfessorController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Professor>> findAll() {
+	public ResponseEntity<List<ProfessorDTOResponse>> findAll(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
 		List<Professor> listaProfessor = this.professorService.findAll();
-		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
+		List<ProfessorDTOResponse> listaProfessorResponse = listaProfessor.stream().map(professor -> {			
+			EnderecoDTO endereco = new EnderecoDTO();
+			
+			endereco.setProvincia(professorDTORequest.getEndereco().getProvincia());
+			endereco.setBairro(professorDTORequest.getEndereco().getBairro());
+			endereco.setMunicipio(professorDTORequest.getEndereco().getMunicipio());
+			endereco.setRua(professorDTORequest.getEndereco().getRua());
+
+
+			ProfessorDTOResponse professorResponse = new ProfessorDTOResponse();
+			professorResponse.setId(professor.getId());
+			professorResponse.setNome(professor.getNome());
+			professorResponse.setSenha(professor.getSenha());
+			professorResponse.setCpf(professor.getCpf());
+			professorResponse.setNivelDeAcesso(professor.getNivelDeAcesso().toString().toLowerCase());
+			professorResponse.setDataDeCadastro(professor.getDataDeCadastro());
+			professorResponse.setEndereco(endereco);
+			
+			return professorResponse;
+		}).collect(Collectors.toList());
+
+		return new ResponseEntity<>(listaProfessorResponse, HttpStatus.OK);
 	}
 	
 	
