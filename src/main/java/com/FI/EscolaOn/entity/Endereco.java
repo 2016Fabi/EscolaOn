@@ -2,14 +2,12 @@ package com.FI.EscolaOn.entity;
 
 import java.io.Serializable;
 
-import com.FI.EscolaOn.dto.EnderecoDTO;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 import lombok.Data;
@@ -36,20 +34,23 @@ public class Endereco implements Serializable {
 	@Column(nullable = false)
 	private String rua;
 
-//	@OneToOne(mappedBy = "endereco")
-//	private Professor professor;
+	@OneToOne(mappedBy = "endereco")
+	private Professor professor;
 
 	public Endereco() {
 	
 	}
+
+	public Endereco(Long id, String provincia, String municipio, String bairro, String rua) {
+		this.id = id;
+		this.provincia = provincia;
+		this.municipio = municipio;
+		this.bairro = bairro;
+		this.rua = rua;
+	}
 	
 
-	public Endereco(EnderecoDTO enderecoDTO) {
-		this.provincia = enderecoDTO.getProvincia();
-		this.municipio = enderecoDTO.getMunicipio();
-		this.bairro = enderecoDTO.getBairro();
-		this.rua = enderecoDTO.getRua();
-	}
+	
 
 
 

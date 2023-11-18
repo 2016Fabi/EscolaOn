@@ -29,8 +29,4 @@ public class EnderecoService {
 	public Endereco updateEndereco(Endereco endereco, Long id) {
 		return enderecoRepository.save(endereco);
 	}
-
-	public Endereco findById(Long id) {
-		return enderecoRepository.findById(id).get();
-	}
 }
