@@ -37,13 +37,14 @@ public class Professor implements Serializable {
 	}
 
 	public Professor(Long id, String nome, String senha, String cpf, NivelAcesso nivelDeAcesso,
-			LocalDateTime dataDeCadastro) {		
+			LocalDateTime dataDeCadastro, Endereco endereco) {		
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
 		this.cpf = cpf;
 		this.nivelDeAcesso = nivelDeAcesso;
 		this.dataDeCadastro = dataDeCadastro;
+		this.endereco = endereco;
 	}
 	
 	

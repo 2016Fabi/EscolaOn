@@ -70,7 +70,7 @@ public class ProfessorController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Professor>> findAll() {
+	public ResponseEntity<List<Professor>> listar() {
 		List<Professor> listaProfessor = this.professorService.findAll();
 		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
 	}
