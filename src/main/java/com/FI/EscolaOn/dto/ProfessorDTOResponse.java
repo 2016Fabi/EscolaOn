@@ -27,6 +27,7 @@ public class ProfessorDTOResponse {
 		this.cpf = professor.getCpf();
 		this.nivelDeAcesso = professor.getNivelDeAcesso().toString();
 		this.dataDeCadastro = professor.getDataDeCadastro();
+		this.endereco = new EnderecoDTO(professor.getEndereco());
 	}
 	
 }
