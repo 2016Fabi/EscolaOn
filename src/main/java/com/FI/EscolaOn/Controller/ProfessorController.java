@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 //import java.util.ArrayList;
 import java.util.List;
-//import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
-import com.FI.EscolaOn.dto.EnderecoDTO;
 import com.FI.EscolaOn.dto.ProfessorDTO;
-import com.FI.EscolaOn.dto.ProfessorDTOResponse;
+import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.entity.Professor;
+import com.FI.EscolaOn.service.impl.EnderecoService;
 import com.FI.EscolaOn.service.impl.ProfessorService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,55 +35,55 @@ public class ProfessorController {
 
 	@Autowired
 	ProfessorService professorService;
+	
+	@Autowired
+	EnderecoService enderecoService;
+	
 
 	@PostMapping
-	public ResponseEntity<ProfessorDTOResponse> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
+	public ResponseEntity<Professor> saveProfessor(@RequestBody @Valid ProfessorDTO professorDTORequest, HttpServletRequest request) {
 		Professor professor = new Professor();
-		
-		EnderecoDTO endereco = new EnderecoDTO();
-		
+				
 		professor.setNome(professorDTORequest.getNome());
 		professor.setSenha(professorDTORequest.getSenha());
 		professor.setCpf(professorDTORequest.getCpf());
 		professor.setNivelDeAcesso(NivelAcesso.valueOf(professorDTORequest.getNivelDeAcesso().toUpperCase()));
-		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		professor.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));		
+				
+		Long enderecoId = professorDTORequest.getEnderecoId();
 		
-		endereco.setProvincia(professorDTORequest.getEndereco().getProvincia());
-		endereco.setBairro(professorDTORequest.getEndereco().getBairro());
-		endereco.setMunicipio(professorDTORequest.getEndereco().getMunicipio());
-		endereco.setRua(professorDTORequest.getEndereco().getRua());
+		Endereco end = null;
+				
+		try {
+		 end = enderecoService.findById(enderecoId);			
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
 		
+		professor.setEndereco(end);
 		professor = professorService.save(professor);
-		
-		ProfessorDTOResponse professorResponse = new ProfessorDTOResponse();
-		professorResponse.setId(professor.getId());
-		professorResponse.setNome(professor.getNome());
-		professorResponse.setSenha(professor.getSenha());
-		professorResponse.setCpf(professor.getCpf());
-		professorResponse.setNivelDeAcesso(professor.getNivelDeAcesso().toString().toLowerCase());
-		professorResponse.setDataDeCadastro(professor.getDataDeCadastro());
-		professorResponse.setEndereco(endereco);		
+				
 		 	   
-		return ResponseEntity.status(HttpStatus.CREATED).body(professorResponse);
+		return new ResponseEntity<>(professor, HttpStatus.OK);
 
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<Professor>> listar() {
-		List<Professor> listaProfessor = this.professorService.findAll();
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GetMapping("/listar")
+	public ResponseEntity<List<ProfessorDTO>> listar() {		
+		List listaProfessor = this.professorService.findAll();		
 		return new ResponseEntity<>(listaProfessor, HttpStatus.OK);
 	}
 	
-	
-//	public ResponseEntity<List<ProfessorDTO>> findAll() {
-//		List<ProfessorDTO> professorDTO = new ArrayList<ProfessorDTO>();
-//		professorDTO = professorService.findAll().stream().map(professor -> new ProfessorDTO(professor)).collect(Collectors.toList());
-//		return ResponseEntity.ok().body(professorDTO);
-//	}	
 
 	@PutMapping("/updateProfessor/{id}")
 	public Professor updateProfessor(@RequestBody Professor professor, @PathVariable Long id) throws Exception {
-		return professorService.updateProfessor(professor, id);
+		Professor prof = professorService.findById(id);
+		prof.setNome(professor.getNome());
+		prof.setSenha(professor.getSenha());
+		prof.setCpf(professor.getCpf());
+		return professorService.updateProfessor(prof, id);
 	}
 
 	@DeleteMapping("/deleteProfessor/{id}")

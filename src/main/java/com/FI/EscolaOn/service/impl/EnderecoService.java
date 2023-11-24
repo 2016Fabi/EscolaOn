@@ -1,7 +1,9 @@
 package com.FI.EscolaOn.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,10 @@ public class EnderecoService {
 
 	public Endereco updateEndereco(Endereco endereco, Long id) {
 		return enderecoRepository.save(endereco);
+	}
+	
+	public Endereco findById(Long id) {
+		Optional<Endereco> obj = enderecoRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado Id:" + id + ", Tipo: " + Endereco.class.getName(), obj));
 	}
 }

@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.repository.ProfessorRepository;
 
+
 @Service
-public class ProfessorService {
+public class ProfessorService{
 
 	@Autowired
 	ProfessorRepository professorRepository;
@@ -29,6 +30,7 @@ public class ProfessorService {
 	}
 
 	public Professor updateProfessor(Professor professor, Long id) {
+		professor.setId(id);
 		return professorRepository.save(professor);
 	}
 

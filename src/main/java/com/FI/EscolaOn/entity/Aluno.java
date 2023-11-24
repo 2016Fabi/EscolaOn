@@ -3,6 +3,8 @@ package com.FI.EscolaOn.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.FI.EscolaOn.Enuns.NivelAcesso;
+
 //import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,11 +27,30 @@ public class Aluno implements Serializable {
 	@Column(nullable = false, unique = true, length = 15)
 	private String cpf;
 	@Column(nullable = false)
-	private String niveldeacesso; //eu alterei porque nao funciona num metodo que eu fiz entao tive que mudar para string 
+	private NivelAcesso niveldeacesso; 
 	private LocalDateTime dataDeCadastro;
 
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
+
+	public Aluno() {
+		
+	}
+
+	public Aluno(Long id, String nome, String senha, String email, String cpf, NivelAcesso niveldeacesso,
+			LocalDateTime dataDeCadastro, Endereco endereco) {
+		this.id = id;
+		this.nome = nome;
+		this.senha = senha;
+		this.email = email;
+		this.cpf = cpf;
+		this.niveldeacesso = niveldeacesso;
+		this.dataDeCadastro = dataDeCadastro;
+		this.endereco = endereco;
+	}
+	
+	
+	
 
 }

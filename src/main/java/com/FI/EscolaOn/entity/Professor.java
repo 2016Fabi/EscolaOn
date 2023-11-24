@@ -2,8 +2,10 @@ package com.FI.EscolaOn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
@@ -31,6 +33,10 @@ public class Professor implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy = "professor")
+	@JsonIgnore
+	private List<Curso> curso; 
 
 	public Professor() {
 		

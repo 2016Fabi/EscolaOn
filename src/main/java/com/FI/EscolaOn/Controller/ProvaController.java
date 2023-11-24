@@ -52,7 +52,7 @@ public class ProvaController {
 		return new ResponseEntity<>(prova, HttpStatus.OK);
 	}
 
-	@GetMapping
+	@GetMapping("/listar")
 	public ResponseEntity<List<Prova>> listar() {
 		List<Prova> listaProva = this.provaService.findAll();
 		return new ResponseEntity<>(listaProva, HttpStatus.OK);

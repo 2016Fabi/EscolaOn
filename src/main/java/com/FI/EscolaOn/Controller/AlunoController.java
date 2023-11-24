@@ -1,8 +1,10 @@
 package com.FI.EscolaOn.Controller;
 
 import com.FI.EscolaOn.entity.Aluno;
-//import com.FI.EscolaOn.Enuns.NivelAcesso;
+import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.service.impl.AlunoService;
+import com.FI.EscolaOn.service.impl.EnderecoService;
+import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.AlunoDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,41 +27,54 @@ public class AlunoController {
 
 	@Autowired
 	AlunoService alunoService;
+	
+	@Autowired
+	EnderecoService enderecoService;
 
 	@PostMapping
-	public ResponseEntity<Object> saveAluno(@RequestBody @Valid AlunoDTO alunoDTO, HttpServletRequest request) {
-
-		// Imilio
-//    	var aluno = new Aluno();
-//        if(alunoService.existsBycpf(alunoDTO.getCpf())){
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("O CPF já existe");
-//        }
-//        BeanUtils.copyProperties(alunoDTO, aluno);
-//        aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
-//        aluno.setNiveldeacesso(NivelAcesso.ALUNO);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.save(aluno));
+	public ResponseEntity<Aluno> saveAluno(@RequestBody @Valid AlunoDTO alunoDTORequest, HttpServletRequest request) {
 
 		Aluno aluno = new Aluno();
-		aluno.setNome(alunoDTO.getNome());
-		aluno.setSenha(alunoDTO.getSenha());
-		aluno.setCpf(alunoDTO.getCpf());
-		aluno.setEmail(alunoDTO.getEmail());
-		aluno.setNiveldeacesso(alunoDTO.getNiveldeacesso());
+		aluno.setNome(alunoDTORequest.getNome());
+		aluno.setSenha(alunoDTORequest.getSenha());
+		aluno.setCpf(alunoDTORequest.getCpf());
+		aluno.setEmail(alunoDTORequest.getEmail());
+		aluno.setNiveldeacesso(NivelAcesso.valueOf(alunoDTORequest.getNiveldeacesso().toUpperCase()));
 		aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		
+        Long enderecoId = alunoDTORequest.getEnderecoId();
+		
+		Endereco end = null;
+				
+		try {
+		 end = enderecoService.findById(enderecoId);			
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
+		
+		aluno.setEndereco(end);
+		
 		aluno = alunoService.save(aluno);
 		return new ResponseEntity<>(aluno, HttpStatus.OK);
 
 	}
 
-	@GetMapping
-	public ResponseEntity<List<Aluno>> listar() {
-		List<Aluno> listaAluno = this.alunoService.findAll();
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GetMapping("/listar")
+	public ResponseEntity<List<AlunoDTO>> listar() {
+		List listaAluno = this.alunoService.findAll();
 		return new ResponseEntity<>(listaAluno, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateAluno/{id}")
 	public Aluno updateAluno(@RequestBody Aluno aluno, @PathVariable Long id) throws Exception {
-		return alunoService.updateAluno(aluno, id);
+		Aluno alun = alunoService.findById(id);
+		alun.setNome(aluno.getNome());
+		alun.setSenha(aluno.getSenha());
+		alun.setCpf(aluno.getCpf());
+		alun.setEmail(aluno.getEmail());
+		return alunoService.updateAluno(alun, id);
 	}
 
 	@DeleteMapping("/deleteAluno/{id}")
