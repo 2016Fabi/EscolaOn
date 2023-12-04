@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Aluno")
@@ -43,6 +44,7 @@ public class AlunoController {
 		aluno.setEmail(alunoDTO.getEmail());
 		aluno.setNiveldeacesso(NivelAcesso.valueOf(alunoDTO.getNiveldeacesso().toUpperCase()));
 		aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
+		aluno.setCurso(alunoDTO.getCurso());
 		
 		Long enderecoId = alunoDTO.getEnderecoId();
 
@@ -63,11 +65,17 @@ public class AlunoController {
 	}
 
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+//	@SuppressWarnings({ "unchecked", "rawtypes" })
+//	@GetMapping("/listar")
+//	public ResponseEntity<List<AlunoDTO>> listar() {
+//		List listaAluno = this.alunoService.findAll();
+//		return new ResponseEntity<>(listaAluno, HttpStatus.OK);
+//	}
+	
 	@GetMapping("/listar")
 	public ResponseEntity<List<AlunoDTO>> listar() {
-		List listaAluno = this.alunoService.findAll();
-		return new ResponseEntity<>(listaAluno, HttpStatus.OK);
+	  List<AlunoDTO> listaAluno = this.alunoService.findAll().stream().map(AlunoDTO::new).collect(Collectors.toList());
+	  return new ResponseEntity<>(listaAluno, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateAluno/{id}")
