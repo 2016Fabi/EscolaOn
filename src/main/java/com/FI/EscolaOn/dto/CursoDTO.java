@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.FI.EscolaOn.entity.Curso;
 import com.FI.EscolaOn.entity.Endereco;
-//import com.FI.EscolaOn.entity.Professor;
 import com.FI.EscolaOn.entity.Professor;
 
 import jakarta.validation.constraints.NotBlank;

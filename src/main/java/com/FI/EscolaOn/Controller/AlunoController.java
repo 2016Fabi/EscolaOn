@@ -3,14 +3,13 @@ package com.FI.EscolaOn.Controller;
 import com.FI.EscolaOn.entity.Aluno;
 import com.FI.EscolaOn.entity.Endereco;
 import com.FI.EscolaOn.service.impl.AlunoService;
+import com.FI.EscolaOn.service.impl.CursoService;
 import com.FI.EscolaOn.service.impl.EnderecoService;
 import com.FI.EscolaOn.Enuns.NivelAcesso;
 import com.FI.EscolaOn.dto.AlunoDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-//import jakarta.validation.constraints.Email;
-//import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,29 +29,33 @@ public class AlunoController {
 	
 	@Autowired
 	EnderecoService enderecoService;
+	
+	@Autowired
+	CursoService cursoService;
 
 	@PostMapping
-	public ResponseEntity<Aluno> saveAluno(@RequestBody @Valid AlunoDTO alunoDTORequest, HttpServletRequest request) {
+	public ResponseEntity<Aluno> saveAluno(@RequestBody @Valid AlunoDTO alunoDTO, HttpServletRequest request) {
 
 		Aluno aluno = new Aluno();
-		aluno.setNome(alunoDTORequest.getNome());
-		aluno.setSenha(alunoDTORequest.getSenha());
-		aluno.setCpf(alunoDTORequest.getCpf());
-		aluno.setEmail(alunoDTORequest.getEmail());
-		aluno.setNiveldeacesso(NivelAcesso.valueOf(alunoDTORequest.getNiveldeacesso().toUpperCase()));
+		aluno.setNome(alunoDTO.getNome());
+		aluno.setSenha(alunoDTO.getSenha());
+		aluno.setCpf(alunoDTO.getCpf());
+		aluno.setEmail(alunoDTO.getEmail());
+		aluno.setNiveldeacesso(NivelAcesso.valueOf(alunoDTO.getNiveldeacesso().toUpperCase()));
 		aluno.setDataDeCadastro(LocalDateTime.now(ZoneId.of("UTC")));
 		
-        Long enderecoId = alunoDTORequest.getEnderecoId();
-		
+		Long enderecoId = alunoDTO.getEnderecoId();
+
 		Endereco end = null;
-				
+
 		try {
-		 end = enderecoService.findById(enderecoId);			
-		}catch(Exception ex){
+			end = enderecoService.findById(enderecoId);
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		
+
 		aluno.setEndereco(end);
+		
 		
 		aluno = alunoService.save(aluno);
 		return new ResponseEntity<>(aluno, HttpStatus.OK);

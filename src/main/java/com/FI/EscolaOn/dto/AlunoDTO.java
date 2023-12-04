@@ -1,8 +1,10 @@
 package com.FI.EscolaOn.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.FI.EscolaOn.entity.Aluno;
+import com.FI.EscolaOn.entity.Curso;
 import com.FI.EscolaOn.entity.Endereco;
 
 import jakarta.validation.constraints.Email;
@@ -25,6 +27,7 @@ public class AlunoDTO {
 	private LocalDateTime dataDeCadastro;
 	private Endereco endereco;
 	private Long enderecoId;
+	private List<Curso> curso;
 	
 	
 	public AlunoDTO() {
@@ -41,9 +44,5 @@ public class AlunoDTO {
 		this.niveldeacesso = aluno.getNiveldeacesso().toString();
 		this.dataDeCadastro = aluno.getDataDeCadastro();
 	}
-	
-	
-	
-	
 	
 }

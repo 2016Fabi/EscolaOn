@@ -1,6 +1,9 @@
 package com.FI.EscolaOn.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -9,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -37,6 +41,14 @@ public class Curso {
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
+	
+	@ManyToOne
+	@JoinColumn(name = "professor_id")
+	private Professor professor;
+	
+	@ManyToMany(mappedBy = "curso")
+	@JsonIgnore
+	private List<Aluno> aluno;
 
 	public Curso() {
 		
@@ -53,9 +65,7 @@ public class Curso {
 	}
 	
 
-	@ManyToOne
-	@JoinColumn(name = "professor_id")
-	private Professor professor;
+	
 	
 	
 

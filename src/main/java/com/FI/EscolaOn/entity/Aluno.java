@@ -2,10 +2,9 @@ package com.FI.EscolaOn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
-
-//import com.FI.EscolaOn.Enuns.NivelAcesso;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -33,6 +32,14 @@ public class Aluno implements Serializable {
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "tb_aluno_curso", joinColumns = {
+			@JoinColumn(name = "curso_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "aluno_id", referencedColumnName = "id") })
+	private List<Curso> curso;
+	
 
 	public Aluno() {
 		
