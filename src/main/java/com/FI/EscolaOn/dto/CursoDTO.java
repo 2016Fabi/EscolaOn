@@ -36,5 +36,11 @@ public class CursoDTO {
 		this.cargaHoraria = c.getTempoAula();
 		this.descricao = c.getDescricao();
 		this.dataCadastroCurso = c.getDataCadastroCurso();
+		this.endereco = c.getEndereco();
+		this.enderecoId = c.getEndereco().getId();
+		this.professor = c.getProfessor();
+		this.professorId = c.getProfessor().getId();
+		
+		
 	}	
 }

@@ -53,13 +53,21 @@ public class Endereco implements Serializable {
 	
 	}
 
-	public Endereco(Long id, String provincia, String municipio, String bairro, String rua) {
+
+	public Endereco(Long id, String provincia, String municipio, String bairro, String rua, Professor professor,
+			Aluno aluno, Curso curso) {
 		this.id = id;
 		this.provincia = provincia;
 		this.municipio = municipio;
 		this.bairro = bairro;
 		this.rua = rua;
+		this.professor = professor;
+		this.aluno = aluno;
+		this.curso = curso;
 	}
+	
+	
+	
 	
 	
 }

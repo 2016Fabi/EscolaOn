@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,7 +46,7 @@ public class Curso {
 	@JoinColumn(name = "professor_id")
 	private Professor professor;
 	
-	@ManyToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "curso")
     @JsonIgnore
 	private List<Aluno> aluno;
 
@@ -56,13 +55,14 @@ public class Curso {
 	}
 
 	public Curso(Long id, String curso, String descricao, LocalDateTime dataCadastroCurso, int tempoAula,
-			Endereco endereco) {
+			Endereco endereco, List<Aluno> aluno) {
 		this.id = id;
 		this.curso = curso;
 		this.descricao = descricao;
 		this.dataCadastroCurso = dataCadastroCurso;
 		this.tempoAula = tempoAula;
 		this.endereco = endereco;
+		this.aluno = aluno;
 	}
 	
 

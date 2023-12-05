@@ -46,7 +46,7 @@ public class Aluno implements Serializable {
 	}
 
 	public Aluno(Long id, String nome, String senha, String email, String cpf, NivelAcesso niveldeacesso,
-			LocalDateTime dataDeCadastro, Endereco endereco) {
+			LocalDateTime dataDeCadastro, Endereco endereco, List<Curso> curso) {
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
@@ -55,8 +55,8 @@ public class Aluno implements Serializable {
 		this.niveldeacesso = niveldeacesso;
 		this.dataDeCadastro = dataDeCadastro;
 		this.endereco = endereco;
+		this.curso = curso;
 	}
-	
 	
 	
 
