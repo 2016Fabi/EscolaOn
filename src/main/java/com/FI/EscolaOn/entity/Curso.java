@@ -3,6 +3,8 @@ package com.FI.EscolaOn.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +48,7 @@ public class Curso {
 	private Professor professor;
 	
 	@ManyToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+    @JsonIgnore
 	private List<Aluno> aluno;
 
 	public Curso() {

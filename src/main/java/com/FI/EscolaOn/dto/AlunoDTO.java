@@ -37,12 +37,15 @@ public class AlunoDTO {
 
 	public AlunoDTO(Aluno aluno) {
 		this.id = aluno.getId();
-		this.nome = aluno.getEmail();
+		this.nome = aluno.getNome();
 		this.senha = aluno.getSenha();
 		this.email = aluno.getEmail(); 
 		this.cpf = aluno.getCpf();
 		this.niveldeacesso = aluno.getNiveldeacesso().toString();
 		this.dataDeCadastro = aluno.getDataDeCadastro();
+		this.endereco = aluno.getEndereco();
+		this.enderecoId = aluno.getEndereco().getId();
+		this.curso = aluno.getCurso();
 	}
 	
 }

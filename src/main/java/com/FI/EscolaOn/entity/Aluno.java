@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.FI.EscolaOn.Enuns.NivelAcesso;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -40,7 +38,6 @@ public class Aluno implements Serializable {
 	@JoinTable(name = "tb_aluno_curso", joinColumns = {
 			@JoinColumn(name = "aluno_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "curso_id", referencedColumnName = "id") })
-	@JsonIgnore
 	private List<Curso> curso;
 	
 
