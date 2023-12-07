@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.entity.Prova;
-import com.FI.EscolaOn.repository.ProvaRepository;
+import com.FI.EscolaOn.entity.Proof;
+import com.FI.EscolaOn.repository.ProofRepository;
 
 @Service
-public class ProvaService {
+public class ProofService {
 
 	@Autowired
-	ProvaRepository provaRepository;
+	ProofRepository provaRepository;
 
-	public Prova save(Prova prova) {
+	public Proof save(Proof prova) {
 		return provaRepository.save(prova);
 	}
 
-	public List<Prova> findAll() {
+	public List<Proof> findAll() {
 		return provaRepository.findAll();
 	}
 
@@ -26,11 +26,11 @@ public class ProvaService {
 		provaRepository.deleteById(id);
 	}
 
-	public Prova updateProva(Prova prova, Long id) {
+	public Proof updateProva(Proof prova, Long id) {
 		return provaRepository.save(prova);
 	}
 
-	public Prova findById(Long id) {
+	public Proof findById(Long id) {
 		return provaRepository.findById(id).get();
 	}
 

@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:h2:mem:escolaon
+    username: sa
+    password:
+
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
+  messages:
+    error:
+      name_not_blank: Nome n�o deve estar em branco.
+      address_not_blank: Endere�o n�o deve estar em branco.
+      password_not_blank: Senha n�o deve estar em branco
+      email_not_blank: E-mail n�o deve estar em branco.
+      email_not_valid: Endere�o de e-mail enviado em um formato inv�lido.
+      cpf_not_blank: CPF n�o deve estar em branco.
+
