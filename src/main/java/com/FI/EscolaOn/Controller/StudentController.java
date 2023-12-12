@@ -3,11 +3,15 @@ package com.FI.EscolaOn.Controller;
 
 import com.FI.EscolaOn.dto.request.StudentRegisterRequestDTO;
 import com.FI.EscolaOn.dto.response.StudentRegisterResponseDTO;
-import com.FI.EscolaOn.service.impl.CourseService;
-import com.FI.EscolaOn.service.impl.AddressService;
-import com.FI.EscolaOn.service.impl.StudentService;
+import com.FI.EscolaOn.dto.response.StudentResponseFindAllDTO;
+import com.FI.EscolaOn.service.AddressService;
+import com.FI.EscolaOn.service.CourseService;
+import com.FI.EscolaOn.service.StudentService;
 
 import jakarta.validation.Valid;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +36,12 @@ public class StudentController {
 	public ResponseEntity<StudentRegisterResponseDTO> register(@RequestBody @Valid StudentRegisterRequestDTO request) {
 		return ResponseEntity.ok().body(studentService.register(request));
 	}
+    
+    @GetMapping
+    public ResponseEntity<List<StudentResponseFindAllDTO>> findAll() {
+        return ResponseEntity.ok().body(studentService.findAll());
+    }
+    
 
 //	@SuppressWarnings({ "unchecked", "rawtypes" })
 //	@GetMapping("/listar")

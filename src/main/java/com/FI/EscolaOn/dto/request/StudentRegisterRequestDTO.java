@@ -1,6 +1,7 @@
 package com.FI.EscolaOn.dto.request;
 
 public class StudentRegisterRequestDTO {
+	
 	private String name;
     private String password;
     private String email;

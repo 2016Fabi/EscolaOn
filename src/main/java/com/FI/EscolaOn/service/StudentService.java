@@ -1,9 +1,12 @@
-package com.FI.EscolaOn.service.impl;
+package com.FI.EscolaOn.service;
 
 import com.FI.EscolaOn.dto.request.StudentRegisterRequestDTO;
 import com.FI.EscolaOn.dto.response.StudentRegisterResponseDTO;
+import com.FI.EscolaOn.dto.response.StudentResponseFindAllDTO;
 import com.FI.EscolaOn.mappers.entities.StudentMapper;
 import com.FI.EscolaOn.repository.StudentRepository;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,16 +16,17 @@ import org.springframework.stereotype.Service;
 public class StudentService {
 
 	@Autowired
-	StudentRepository repository;
+	private StudentRepository repository;
 
 	public StudentRegisterResponseDTO register(StudentRegisterRequestDTO request) {
 		return StudentMapper.fromStudent(repository.save(StudentMapper.fromStudentRegisterRequest(request)));
 	}
 
-//	public List<Student> findAll() {
-//		return alunoRepository.findAll();
-//	}
-//
+	public List<StudentResponseFindAllDTO> findAll() {
+		return repository.findAll().stream().map(StudentResponseFindAllDTO::new).toList();
+	}
+	
+	
 //	public void deletar(Long id) {
 //		alunoRepository.deleteById(id);
 //	}
