@@ -13,7 +13,7 @@ public class StudentMapper {
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())
-                .roleName(RoleName.valueOf(request.getRole()))
+                .roleName(RoleName.valueOf(request.getRole().toString()))
                 .cpf(request.getCpf())
                 .address(AddressMapper.fromAddressRegisterRequest(request.getAddress()))
                 .build();

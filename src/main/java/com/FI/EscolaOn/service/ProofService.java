@@ -5,33 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.entity.Proof;
+import com.FI.EscolaOn.dto.request.ProofRegisterRequestDTO;
+import com.FI.EscolaOn.dto.response.ProofRegisterResponseDTO;
+import com.FI.EscolaOn.dto.response.ProofResponseFindAllDTO;
+import com.FI.EscolaOn.mappers.entities.ProofMapper;
 import com.FI.EscolaOn.repository.ProofRepository;
 
 @Service
 public class ProofService {
 
 	@Autowired
-	ProofRepository provaRepository;
+	private ProofRepository repository;
 
-	public Proof save(Proof prova) {
-		return provaRepository.save(prova);
+	public ProofRegisterResponseDTO register(ProofRegisterRequestDTO request) {
+		return ProofMapper.fromProof(repository.save(ProofMapper.fromProofRegisterRequest(request)));
 	}
 
-	public List<Proof> findAll() {
-		return provaRepository.findAll();
+	public List<ProofResponseFindAllDTO> findAll() {
+		return repository.findAll().stream().map(ProofResponseFindAllDTO::new).toList();
 	}
 
-	public void deletar(Long id) {
-		provaRepository.deleteById(id);
-	}
-
-	public Proof updateProva(Proof prova, Long id) {
-		return provaRepository.save(prova);
-	}
-
-	public Proof findById(Long id) {
-		return provaRepository.findById(id).get();
-	}
+//	public void deletar(Long id) {
+//		provaRepository.deleteById(id);
+//	}
+//
+//	public Proof updateProva(Proof prova, Long id) {
+//		return provaRepository.save(prova);
+//	}
+//
+//	public Proof findById(Long id) {
+//		return provaRepository.findById(id).get();
+//	}
 
 }

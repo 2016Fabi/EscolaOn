@@ -30,9 +30,9 @@ public class ProofRegisterResponseDTOBuilder {
 		return this;
 	}
 
-//	public ProofRegisterResponseDTOBuilder questionsProof(List<String> questionsProof) {
-//		this.entity.setQuestionsProof(new ProofRegisterResponseDTO(questionsProof));
-//		return this;
-//	}
+	public ProofRegisterResponseDTOBuilder questionsProof(List<String> questionsProof) {
+		this.entity.setQuestionsProof(questionsProof);
+		return this;
+	}
 
 }
