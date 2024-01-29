@@ -40,7 +40,9 @@ public class StudentController {
     @GetMapping
     public ResponseEntity<List<StudentResponseFindAllDTO>> findAll() {
         return ResponseEntity.ok().body(studentService.findAll());
-    }
+    }  
+    
+    
     
 
 //	@SuppressWarnings({ "unchecked", "rawtypes" })
