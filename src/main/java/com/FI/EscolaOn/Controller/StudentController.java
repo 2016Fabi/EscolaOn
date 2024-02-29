@@ -2,8 +2,10 @@ package com.FI.EscolaOn.Controller;
 
 
 import com.FI.EscolaOn.dto.request.StudentRegisterRequestDTO;
+import com.FI.EscolaOn.dto.request.StudentUpdateRequestDTO;
 import com.FI.EscolaOn.dto.response.StudentRegisterResponseDTO;
 import com.FI.EscolaOn.dto.response.StudentResponseFindAllDTO;
+import com.FI.EscolaOn.dto.response.StudentUpdateResponseDTO;
 import com.FI.EscolaOn.service.AddressService;
 import com.FI.EscolaOn.service.CourseService;
 import com.FI.EscolaOn.service.StudentService;
@@ -41,6 +43,12 @@ public class StudentController {
     public ResponseEntity<List<StudentResponseFindAllDTO>> findAll() {
         return ResponseEntity.ok().body(studentService.findAll());
     }  
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentUpdateResponseDTO> update(@PathVariable Long id, @RequestBody @Valid StudentUpdateRequestDTO request) {
+        StudentUpdateResponseDTO updatedStudent = studentService.update(id, request);
+        return ResponseEntity.ok().body(updatedStudent);
+    }
     
     
     
