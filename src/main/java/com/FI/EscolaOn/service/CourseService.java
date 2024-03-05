@@ -7,9 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.dto.request.CourseRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.CourseRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.CourseResponseFindAllDTO;
+import com.FI.EscolaOn.dto.request.CourseRequestDTO;
+import com.FI.EscolaOn.dto.response.CourseResponseDTO;
 import com.FI.EscolaOn.mappers.entities.CourseMapper;
 import com.FI.EscolaOn.repository.CourseRepository;
 
@@ -19,12 +18,12 @@ public class CourseService {
 	@Autowired
 	private CourseRepository repository;
 
-	public CourseRegisterResponseDTO register(CourseRegisterRequestDTO request) {
+	public CourseResponseDTO register(CourseRequestDTO request) {
 		return CourseMapper.fromCourse(repository.save(CourseMapper.fromCourseRegisterRequest(request)));
 	}
 
-	public List<CourseResponseFindAllDTO> findAll() {
-		return repository.findAll().stream().map(CourseResponseFindAllDTO::new).toList();
+	public List<CourseResponseDTO> findAll() {
+		return repository.findAll().stream().map(CourseResponseDTO::new).toList();
 	}
 
 //	public void deletar(Long id) {

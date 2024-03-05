@@ -1,10 +1,7 @@
 package com.FI.EscolaOn.service;
 
-import com.FI.EscolaOn.dto.request.StudentRegisterRequestDTO;
-import com.FI.EscolaOn.dto.request.StudentUpdateRequestDTO;
-import com.FI.EscolaOn.dto.response.StudentRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.StudentResponseFindAllDTO;
-import com.FI.EscolaOn.dto.response.StudentUpdateResponseDTO;
+import com.FI.EscolaOn.dto.request.StudentRequestDTO;
+import com.FI.EscolaOn.dto.response.StudentResponseDTO;
 import com.FI.EscolaOn.entity.Student;
 import com.FI.EscolaOn.mappers.entities.StudentMapper;
 import com.FI.EscolaOn.repository.StudentRepository;
@@ -21,15 +18,15 @@ public class StudentService {
 	@Autowired
 	private StudentRepository repository;
 
-	public StudentRegisterResponseDTO register(StudentRegisterRequestDTO request) {
+	public StudentResponseDTO register(StudentRequestDTO request) {
 		return StudentMapper.fromStudent(repository.save(StudentMapper.fromStudentRegisterRequest(request)));
 	}
 
-	public List<StudentResponseFindAllDTO> findAll() {
-		return repository.findAll().stream().map(StudentResponseFindAllDTO::new).toList();
+	public List<StudentResponseDTO> findAll() {
+		return repository.findAll().stream().map(StudentResponseDTO::new).toList();
 	}
 	
-	public StudentUpdateResponseDTO update(Long id, StudentUpdateRequestDTO request) {
+	public StudentResponseDTO update(Long id, StudentRequestDTO request) {
 		Student existingStudent = repository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado com ID: " + id));
 		
@@ -37,7 +34,7 @@ public class StudentService {
 		 existingStudent.setEmail(request.getEmail());
 		 existingStudent.setRoleName(request.getRole());
 		
-		return StudentMapper.fromupdateStudent(repository.save(existingStudent));
+		return StudentMapper.fromStudent(repository.save(existingStudent));
     	
     }
 	

@@ -7,9 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.dto.request.TeacherRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.TeacherRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.TeacherResponseFindAllDTO;
+import com.FI.EscolaOn.dto.request.TeacherRequestDTO;
+import com.FI.EscolaOn.dto.response.TeacherResponseDTO;
 import com.FI.EscolaOn.mappers.entities.TeacherMapper;
 import com.FI.EscolaOn.repository.TeacherRepository;
 
@@ -20,12 +19,12 @@ public class TeacherService{
 	@Autowired
 	private TeacherRepository repository;
 	
-	public TeacherRegisterResponseDTO register(TeacherRegisterRequestDTO request) {
+	public TeacherResponseDTO register(TeacherRequestDTO request) {
 		return TeacherMapper.fromTeacher(repository.save(TeacherMapper.fromTeacherRegisterRequest(request)));
 	}
 
-	public List<TeacherResponseFindAllDTO> findAll() {
-		return repository.findAll().stream().map(TeacherResponseFindAllDTO::new).toList();
+	public List<TeacherResponseDTO> findAll() {
+		return repository.findAll().stream().map(TeacherResponseDTO::new).toList();
 	}
 
 //	public void deletar(Long id) {

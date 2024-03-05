@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.dto.request.ProofRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.ProofRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.ProofResponseFindAllDTO;
+import com.FI.EscolaOn.dto.request.ProofRequestDTO;
+import com.FI.EscolaOn.dto.response.ProofResponseDTO;
 import com.FI.EscolaOn.mappers.entities.ProofMapper;
 import com.FI.EscolaOn.repository.ProofRepository;
 
@@ -17,12 +16,12 @@ public class ProofService {
 	@Autowired
 	private ProofRepository repository;
 
-	public ProofRegisterResponseDTO register(ProofRegisterRequestDTO request) {
+	public ProofResponseDTO register(ProofRequestDTO request) {
 		return ProofMapper.fromProof(repository.save(ProofMapper.fromProofRegisterRequest(request)));
 	}
 
-	public List<ProofResponseFindAllDTO> findAll() {
-		return repository.findAll().stream().map(ProofResponseFindAllDTO::new).toList();
+	public List<ProofResponseDTO> findAll() {
+		return repository.findAll().stream().map(ProofResponseDTO::new).toList();
 	}
 
 //	public void deletar(Long id) {

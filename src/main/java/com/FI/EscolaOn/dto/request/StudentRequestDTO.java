@@ -2,13 +2,13 @@ package com.FI.EscolaOn.dto.request;
 
 import com.FI.EscolaOn.enums.RoleName;
 
-public class StudentUpdateRequestDTO {
+public class StudentRequestDTO {
 	private String name;
     private String password;
     private String email;
     private String cpf;
     private RoleName role;
-    private AddressRegisterRequestDTO address;
+    private AddressRequestDTO address;
     
 	public String getName() {
 		return name;
@@ -45,16 +45,17 @@ public class StudentUpdateRequestDTO {
 	public RoleName getRole() {
 		return role;
 	}
-	
+
 	public void setRole(RoleName role) {
 		this.role = role;
 	}
-	
-	public AddressRegisterRequestDTO getAddress() {
+
+	public AddressRequestDTO getAddress() {
 		return address;
 	}
-	
-	public void setAddress(AddressRegisterRequestDTO address) {
+
+	public void setAddress(AddressRequestDTO address) {
 		this.address = address;
 	}
+	
 }

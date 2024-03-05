@@ -2,11 +2,11 @@ package com.FI.EscolaOn.dto.request;
 
 import com.FI.EscolaOn.enums.CourseName;
 
-public class CourseRegisterRequestDTO {
+public class CourseRequestDTO {
 	private CourseName course;
 	private String description;
 	private int timeCourse;
-	private AddressRegisterRequestDTO address;
+	private AddressRequestDTO address;
 	
 	public CourseName getCourse() {
 		return course;
@@ -32,11 +32,11 @@ public class CourseRegisterRequestDTO {
 		this.timeCourse = timeCourse;
 	}
 
-	public AddressRegisterRequestDTO getAddress() {
+	public AddressRequestDTO getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressRegisterRequestDTO address) {
+	public void setAddress(AddressRequestDTO address) {
 		this.address = address;
 	}
 

@@ -1,13 +1,13 @@
 package com.FI.EscolaOn.mappers.entities;
 
-import com.FI.EscolaOn.builders.dto.ProofRegisterResponseDTOBuilder;
+import com.FI.EscolaOn.builders.dto.ProofResponseDTOBuilder;
 import com.FI.EscolaOn.builders.entities.ProofBuilder;
-import com.FI.EscolaOn.dto.request.ProofRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.ProofRegisterResponseDTO;
+import com.FI.EscolaOn.dto.request.ProofRequestDTO;
+import com.FI.EscolaOn.dto.response.ProofResponseDTO;
 import com.FI.EscolaOn.entity.Proof;
 
 public class ProofMapper {
-	public static Proof fromProofRegisterRequest(ProofRegisterRequestDTO request) {
+	public static Proof fromProofRegisterRequest(ProofRequestDTO request) {
 		return ProofBuilder.builder()
 				.nameProof(request.getNameProof())
 				.variantProof(request.getVariantProof())
@@ -15,8 +15,8 @@ public class ProofMapper {
 				.build();
 	}
 
-	public static ProofRegisterResponseDTO fromProof(Proof entity) {
-		return ProofRegisterResponseDTOBuilder.builder()
+	public static ProofResponseDTO fromProof(Proof entity) {
+		return ProofResponseDTOBuilder.builder()
 				.nameProof(entity.getNameProof())
 				.variantProof(entity.getVariantProof())
 				.questionsProof(entity.getQuestionsProof())

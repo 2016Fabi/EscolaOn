@@ -1,15 +1,15 @@
 package com.FI.EscolaOn.mappers.entities;
 
-import com.FI.EscolaOn.builders.dto.TeacherRegisterResponseDTOBuilder;
+import com.FI.EscolaOn.builders.dto.TeacherResponseDTOBuilder;
 import com.FI.EscolaOn.builders.entities.TeacherBuilder;
-import com.FI.EscolaOn.dto.request.TeacherRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.TeacherRegisterResponseDTO;
+import com.FI.EscolaOn.dto.request.TeacherRequestDTO;
+import com.FI.EscolaOn.dto.response.TeacherResponseDTO;
 import com.FI.EscolaOn.entity.Teacher;
 import com.FI.EscolaOn.enums.RoleName;
 
 public class TeacherMapper {
 
-	public static Teacher fromTeacherRegisterRequest(TeacherRegisterRequestDTO request) {
+	public static Teacher fromTeacherRegisterRequest(TeacherRequestDTO request) {
 		return TeacherBuilder.builder()
                 .name(request.getName())
                 .password(request.getPassword())
@@ -19,8 +19,8 @@ public class TeacherMapper {
                 .build();
 	}
 
-	public static TeacherRegisterResponseDTO fromTeacher(Teacher entity) {
-		return TeacherRegisterResponseDTOBuilder.builder()
+	public static TeacherResponseDTO fromTeacher(Teacher entity) {
+		return TeacherResponseDTOBuilder.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .roleName(entity.getRole())

@@ -1,13 +1,13 @@
 package com.FI.EscolaOn.mappers.entities;
 
-import com.FI.EscolaOn.builders.dto.CourseRegisterResponseDTOBuilder;
+import com.FI.EscolaOn.builders.dto.CourseResponseDTOBuilder;
 import com.FI.EscolaOn.builders.entities.CourseBuilder;
-import com.FI.EscolaOn.dto.request.CourseRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.CourseRegisterResponseDTO;
+import com.FI.EscolaOn.dto.request.CourseRequestDTO;
+import com.FI.EscolaOn.dto.response.CourseResponseDTO;
 import com.FI.EscolaOn.entity.Course;
 
 public class CourseMapper {
-	public static Course fromCourseRegisterRequest(CourseRegisterRequestDTO request) {
+	public static Course fromCourseRegisterRequest(CourseRequestDTO request) {
 		return CourseBuilder.builder()
 				.course(request.getCourse())
 				.description(request.getDescription())
@@ -15,8 +15,8 @@ public class CourseMapper {
 				.address(AddressMapper.fromAddressRegisterRequest(request.getAddress()))
 				.build();		
 	}
-	public static CourseRegisterResponseDTO fromCourse(Course entity) {
-		return CourseRegisterResponseDTOBuilder.builder()
+	public static CourseResponseDTO fromCourse(Course entity) {
+		return CourseResponseDTOBuilder.builder()
 				.course(entity.getCourse())
 				.description(entity.getDescription())
 				.timeCourse(entity.getTimeCourse())

@@ -5,22 +5,21 @@ import java.time.Instant;
 import com.FI.EscolaOn.entity.Course;
 import com.FI.EscolaOn.enums.CourseName;
 
-public class CourseResponseFindAllDTO {
-	
+public class CourseResponseDTO {
 	private Long id;
 	private CourseName course;
 	private String description;
 	private Instant createdAt = Instant.now();
 	private int timeCourse;
-	private AddressRegisterResponseDTO address;
+	private AddressResponseDTO address;
 	
-	public CourseResponseFindAllDTO(Course entity) {
+	public CourseResponseDTO(Course entity) {
 		this.id = entity.getId();
 		this.course = entity.getCourse();
 		this.description = entity.getDescription();
 		this.createdAt = entity.getCreatedAt();
 		this.timeCourse = entity.getTimeCourse();
-	    this.address = new AddressRegisterResponseDTO(entity.getAddress());
+	    this.setAddress(new AddressResponseDTO(entity.getAddress()));
 	
 	}
 
@@ -64,14 +63,12 @@ public class CourseResponseFindAllDTO {
 		this.timeCourse = timeCourse;
 	}
 
-	public AddressRegisterResponseDTO getAddress() {
+	public AddressResponseDTO getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressRegisterResponseDTO address) {
+	public void setAddress(AddressResponseDTO address) {
 		this.address = address;
 	}
-	
-	
-	
+
 }

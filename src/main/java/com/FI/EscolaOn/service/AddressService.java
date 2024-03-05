@@ -7,9 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.FI.EscolaOn.dto.request.AddressRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.AddressRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.AddressResponseFindAllDTO;
+import com.FI.EscolaOn.dto.request.AddressRequestDTO;
+import com.FI.EscolaOn.dto.response.AddressResponseDTO;
 import com.FI.EscolaOn.mappers.entities.AddressMapper;
 import com.FI.EscolaOn.repository.AddressRepository;
 
@@ -20,12 +19,12 @@ public class AddressService {
 	private AddressRepository repository;
 
 	
-	public AddressRegisterResponseDTO register(AddressRegisterRequestDTO request) {
+	public AddressResponseDTO register(AddressRequestDTO request) {
 		return AddressMapper.fromAddress(repository.save(AddressMapper.fromAddressRegisterRequest(request)));
 	}
 
-	public List<AddressResponseFindAllDTO> findAll() {
-		return repository.findAll().stream().map(AddressResponseFindAllDTO::new).toList();	
+	public List<AddressResponseDTO> findAll() {
+		return repository.findAll().stream().map(AddressResponseDTO::new).toList();	
 	}
 
 //	public void deletar(Long id) {

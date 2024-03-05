@@ -1,6 +1,6 @@
 package com.FI.EscolaOn.dto.request;
 
-public class AddressRegisterRequestDTO {
+public class AddressRequestDTO {
 	private String province;
 	private String county;
 	private String neighborhood;

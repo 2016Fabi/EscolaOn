@@ -1,16 +1,14 @@
 package com.FI.EscolaOn.mappers.entities;
 
-import com.FI.EscolaOn.builders.dto.StudentRegisterResponseDTOBuilder;
-import com.FI.EscolaOn.builders.dto.StudentUpdateResponseDTOBuilder;
+import com.FI.EscolaOn.builders.dto.StudentResponseDTOBuilder;
 import com.FI.EscolaOn.builders.entities.StudentBuilder;
-import com.FI.EscolaOn.dto.request.StudentRegisterRequestDTO;
-import com.FI.EscolaOn.dto.response.StudentRegisterResponseDTO;
-import com.FI.EscolaOn.dto.response.StudentUpdateResponseDTO;
+import com.FI.EscolaOn.dto.request.StudentRequestDTO;
+import com.FI.EscolaOn.dto.response.StudentResponseDTO;
 import com.FI.EscolaOn.entity.Student;
 import com.FI.EscolaOn.enums.RoleName;
 
 public class StudentMapper {
-	public static Student fromStudentRegisterRequest(StudentRegisterRequestDTO request) {
+	public static Student fromStudentRegisterRequest(StudentRequestDTO request) {
         return StudentBuilder.builder()
                 .name(request.getName())
                 .email(request.getEmail())
@@ -21,19 +19,8 @@ public class StudentMapper {
                 .build();
     }
 
-    public static StudentRegisterResponseDTO fromStudent(Student entity){
-        return StudentRegisterResponseDTOBuilder.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .roleName(entity.getRoleName())
-                .cpf(entity.getCpf())
-                .email(entity.getEmail())
-                .address(entity.getAddress())
-                .build();
-    }
-    
-    public static StudentUpdateResponseDTO fromupdateStudent(Student entity){
-        return StudentUpdateResponseDTOBuilder.builder()
+    public static StudentResponseDTO fromStudent(Student entity){
+        return StudentResponseDTOBuilder.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .roleName(entity.getRoleName())
