@@ -1,6 +1,6 @@
 package com.FI.EscolaOn.mappers.entities;
 
-import com.FI.EscolaOn.builders.dto.CourseResponseDTOBuilder;
+import com.FI.EscolaOn.builders.dto.response.CourseResponseDTOBuilder;
 import com.FI.EscolaOn.builders.entities.CourseBuilder;
 import com.FI.EscolaOn.dto.request.CourseRequestDTO;
 import com.FI.EscolaOn.dto.response.CourseResponseDTO;
