@@ -1,4 +1,4 @@
-package com.FI.EscolaOn.builders.dto;
+package com.FI.EscolaOn.builders.dto.response;
 
 import java.util.List;
 
