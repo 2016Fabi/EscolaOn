@@ -1,10 +1,25 @@
 package com.FI.EscolaOn.dto.request;
 
+import com.FI.EscolaOn.entity.Address;
+
 public class AddressRequestDTO {
 	private String province;
 	private String county;
 	private String neighborhood;
 	private String street;
+	
+	
+
+	public AddressRequestDTO() {
+
+	}
+
+	public AddressRequestDTO(Address entity) {
+		this.province = entity.getProvince();
+		this.county = entity.getCounty();
+		this.neighborhood = entity.getNeighborhood();
+		this.street = entity.getStreet();
+	}
 
 	public String getProvince() {
 		return province;
